@@ -12,7 +12,35 @@
     </head>
     <body>
         <div class="wrapper">
-            {{-- Navbar --}}
+            <nav class="navbar navbar-fixed-top">
+                <div class="container">
+                    <div class="col-md-2">
+                        <div class="navbar-header">
+                            <h4>StockChat</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Streams</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Inbox</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="search-bar">
+                            <form action="" method="GET">
+                                <div class="form-group">
+                                    {{ Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Symbol']) }}
+                                    {{-- todo: typeahead --}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
 
         <div class="body">

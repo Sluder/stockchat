@@ -5,6 +5,65 @@
 @import "variables";
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome.scss";
 
 
 // ---------- STYLES ----------
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.body {
+  height: 100%;
+  padding-top: 70px;
+  padding-bottom: 60px;
+}
+
+.navbar-fixed-top {
+  height: 55px;
+  background-color: $dark-grey;
+
+  .navbar-header {
+    padding-top: 10px;
+    padding-left: 10%;
+    color: white;
+  }
+
+  .navbar-nav {
+    i {
+      font-size: 20px;
+      padding-right: 7px;
+    }
+  }
+
+  .search-bar {
+    margin-top: 10px;
+  }
+
+  li > a {
+    color: white;
+    height: 55px;
+    padding-top: 17px;
+
+    &:hover, &:focus {
+      color: white;
+      background-color: $light-grey;
+    }
+  }
+
+  a.active {
+
+  }
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding-top: 30px;
+}
