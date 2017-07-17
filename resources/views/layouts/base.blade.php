@@ -2,8 +2,6 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Stock Chat</title>
 
@@ -60,5 +58,9 @@
 
         {{-- Scripts --}}
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+        <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+
+        @yield('scripts')
     </body>
 </html>

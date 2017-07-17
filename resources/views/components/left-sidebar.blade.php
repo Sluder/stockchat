@@ -1,4 +1,5 @@
 
+{{-- Left side bar (Watchlist & joined groups) --}}
 <div class="col-md-2 col-md-offset-1">
     <div class="watchlist">
         <div class="row header">

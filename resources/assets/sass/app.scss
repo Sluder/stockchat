@@ -12,6 +12,7 @@
 html, body {
   height: 100%;
   min-height: 100%;
+  background-color: $grey;
 }
 
 .wrapper {
@@ -22,7 +23,6 @@ html, body {
   height: 100%;
   padding-top: 70px;
   padding-bottom: 60px;
-  background-color: $grey;
 
   .content {
     padding-top: 20px;
@@ -77,8 +77,6 @@ html, body {
   .header {
     color: white;
     background-color: $dark-grey;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     padding: 2.5%;
     font-size: 16px;
 
@@ -97,6 +95,7 @@ html, body {
     padding-top: 3px;
     padding-bottom: 3px;
     background-color: $light-grey;
+    border-radius: 5px;
 
     .ticker {
       color: white;
@@ -121,14 +120,6 @@ html, body {
       float: right;
       margin-right: 0;
     }
-
-    .green {
-      color: green;
-    }
-
-    .red {
-      color: red;
-    }
   }
 
   .group-item {
@@ -143,4 +134,30 @@ html, body {
 
 .groups {
   margin-top: 30px;
+}
+
+// ---------- WATCHLIST CHARTS ----------
+.watchlist-chart {
+  .header {
+    background-color: $dark-grey;
+    color: white;
+    font-size: 16px;
+    padding: 0.8% 0.8% 0.8% 13px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .chart {
+    padding-left: 30px;
+    padding-right: 31px;
+  }
+}
+
+// ---------- GLOBAL ----------
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
 }
