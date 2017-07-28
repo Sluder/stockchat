@@ -56,7 +56,7 @@ html, body {
 
   li {
     &:hover, &:focus {
-      border-bottom: 3px solid white;
+      border-bottom: 3px solid $green;
       background-color: transparent;
       height: 50px;
     }
@@ -80,31 +80,50 @@ html, body {
   padding-top: 30px;
 }
 
-.no-left {
-  padding-left: 0;
+.full-height {
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+  overflow: hidden;
 }
 
 // ---------- LEFT SIDEBAR ----------
 .watchlist, .groups {
+  text-align: center;
 
+  .subheader {
+    margin-top: 20px;
+  }
+
+  .side-item {
+    background-color: $light-grey;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
 }
 
 .groups {
-  margin-top: 30px;
-}
-
-// ---------- WATCHLIST CHARTS ----------
-.left-sidebar {
-  .watchlist-chart {
-
-  }
+  margin-top: 35px;
 }
 
 // ---------- GLOBAL ----------
 .green {
-  color: green;
+  color: $green;
 }
 
 .red {
   color: red;
+}
+
+.no-left {
+  padding-left: 0;
+}
+
+.subheader {
+  color: white;
+  text-align: center;
+  border-bottom: 2px solid $green;
+  display: inline-block;
+  padding: 0 15px 3px;
 }
