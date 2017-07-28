@@ -11,7 +11,7 @@
                     <div class="col-md-6">
                         <div class="row header">Watchlist Charts</div>
 
-                        <div class="row chart" id="chart"></div>
+                        {{--<div class="row chart" id="chart"></div>--}}
                     </div>
                 </div>
             </div>

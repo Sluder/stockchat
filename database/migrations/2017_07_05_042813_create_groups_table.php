@@ -17,8 +17,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('creator_id');
-            $table->string('purpose');
-            $table->boolean('invite_only');
+            $table->string('objective');
             $table->timestamps();
         });
     }

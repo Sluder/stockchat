@@ -17,10 +17,17 @@ class User extends Model
         'password', 'remember_token',
     ];
 
+    // ---------- FOLLOWING ----------
     // Get all followers of the user
     public function followers()
     {
-        return $this->belongsToMany('App\User', 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany('App\User', 'followers', 'follow_id', 'user_id');
+    }
+
+    // Get users this user is following
+    public function following()
+    {
+        return $this->belongsToMany('App\User', 'followers', 'user_id', 'follow_id');
     }
 
     // This user wants to follower $user
@@ -35,22 +42,6 @@ class User extends Model
         $this->followers()->detach($user->id);
     }
 
-    // Get all groups this user is in currently
-    public function joinedGroups()
-    {
-        return $this->belongsToMany('App\Group', 'groups', 'group_id', 'user_id');
-    }
-
-    // This user wants to join group $group->id
-    public function joinGroup(Group $group)
-    {
-        $this->joinedGroups()->attach($group->id);
-    }
-
-    // This user wants to leave group $group->id
-    public function leaveGroup(Group $group)
-    {
-        $this->followers()->detach($group->id);
-    }
+    // ---------- GROUPS ----------
 
 }

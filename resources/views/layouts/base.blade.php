@@ -32,7 +32,7 @@
                             <div class="search-bar">
                                 <form action="" method="GET">
                                     <div class="form-group">
-                                        {{ Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Symbol']) }}
+                                        {{ Form::text('search', null, ['class' => 'form-control search-bar', 'placeholder' => 'Symbol']) }}
                                         {{-- todo: typeahead --}}
                                     </div>
                                 </form>
