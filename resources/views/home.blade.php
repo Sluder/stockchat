@@ -9,6 +9,7 @@
 
                 <div class="col-md-6 full-height">
                     <div class="row header">Watchlist Charts</div>
+            <div class="row" style="height: 200px; background-color: #525252"></div>
 
                     {{--<div class="row chart" id="chart"></div>--}}
                 </div>
