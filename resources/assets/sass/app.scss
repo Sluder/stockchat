@@ -1,6 +1,6 @@
 
 // ---------- IMPORTS ----------
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 @import "variables";
 
@@ -13,6 +13,7 @@ html, body {
   height: 100%;
   min-height: 100%;
   background-color: $medium-grey;
+  font-family: 'Roboto', sans-serif;
 }
 
 .wrapper {
@@ -56,7 +57,7 @@ html, body {
 
   li {
     &:hover, &:focus {
-      border-bottom: 3px solid $green;
+      border-bottom: 3px solid white;
       background-color: transparent;
       height: 50px;
     }
@@ -94,12 +95,20 @@ html, body {
     margin-top: 20px;
   }
 
-  .side-item {
-    background-color: $grey;
+  .side-header {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .watch-header, .group-header {
+    float: left;
+  }
+
+  .watch-item {
     height: 50px;
     margin: 0 5px 5px;
-    border-radius: 5px;
     padding-top: 5px;
+    border-bottom: 1px solid $grey;
 
     .ticker {
       color: white;
@@ -114,10 +123,10 @@ html, body {
       margin-bottom: 0;
     }
 
-    .change {
+    .percent-change {
       color: white;
       text-align: right;
-      font-size: 15px;
+      font-size: 13px;
       margin-bottom: 0;
     }
 
@@ -129,10 +138,9 @@ html, body {
   }
 
   .group-item {
-    background-color: $grey;
+    border-bottom: 1px solid $grey;
     height: 44px;
     margin: 0 5px 5px;
-    border-radius: 5px;
     padding-top: 3px;
 
     .group-name {
@@ -150,13 +158,63 @@ html, body {
   margin-top: 25px;
 }
 
+// ---------- NEW GROUP ----------
+.new-group {
+  margin: 32px 15px 0;
+
+  .subheader {
+    margin-top: 20px;
+    padding-bottom: 0;
+  }
+
+  .helper-text {
+    margin-left: 15px;
+    color: $light-grey;
+    font-size: 14px;
+  }
+
+  .join {
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: $grey;
+    padding: 10px;
+  }
+
+  .create {
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: $grey;
+    padding: 10px;
+  }
+
+  form {
+    margin-top: 10px;
+
+    label {
+      color: white;
+      font-weight: normal;
+    }
+    
+    input {
+      color: white;
+      background-color: $grey;
+      border: 0 solid $grey;
+      border-radius: 5px;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
 // ---------- GLOBAL ----------
 .green {
-  color: $green;
+  color: $green !important;
 }
 
 .red {
-  color: red;
+  color: red !important;
 }
 
 .no-left {
@@ -172,4 +230,21 @@ html, body {
   text-align: center;
   display: inline-block;
   padding: 0 15px 3px;
+}
+
+.material-icon {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  padding-top: 7px;
+  border-radius: 19px;
+  color: white;
+  background-color: $grey;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,0.5);
+    box-shadow: 0 0 9px -1px rgba(0,0,0,0.5);
+  }
 }
