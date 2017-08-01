@@ -310,7 +310,9 @@ input[type="text"] {
   background-color: $accent;
   color: white;
 
-  &:hover {
+  &:hover, &:focus, &:active {
+    outline: none;
+    color: white;
     -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
     -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
     box-shadow: 0 0 9px -1px rgba(0,0,0,1);

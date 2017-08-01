@@ -30,18 +30,35 @@ class User extends Model
         return $this->belongsToMany('App\User', 'followers', 'user_id', 'follow_id');
     }
 
-    // This user wants to follower $user
-    public function follow(User $user)
+    // Follow $user
+    public function follow()
     {
-        $this->followers()->attach($user->id);
+        $this->followers()->attach(2);
     }
 
-    // This user wants to un-follow $user
-    public function unfollow(User $user)
+    // Un-follow $user
+    public function unfollow()
     {
-        $this->followers()->detach($user->id);
+        $this->followers()->detach(2);
     }
 
     // ---------- GROUPS ----------
+    // Get all joined groups for user
+    public function groups()
+    {
+        return $this->belongsToMany('App\Group', 'group_joins', "user_id", "group_id");
+    }
+
+    // Join a group
+    public function joinGroup($group_id)
+    {
+        $this->groups()->attach($group_id);
+    }
+
+    // Leave a group
+    public function leaveGroup($group_id)
+    {
+        $this->groups()->detach($group_id);
+    }
 
 }

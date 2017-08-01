@@ -19,13 +19,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="link">Link</label>
-                                            {{ Form::text('link', null, ['class' => 'form-control']) }}
+                                            {{ Form::text('link', null, ['class' => 'form-control', 'required' => 'required']) }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="#" type="submit" class="btn custom-btn">Join</a>
+                                        <button type="submit" class="btn custom-btn">Join</button>
                                     </div>
                                 </div>
                             </form>
@@ -45,7 +45,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="group-name">Group Name <span class="accent">*</span></label>
-                                            {{ Form::text('group-name', null, ['class' => 'form-control']) }}
+                                            {{ Form::text('group-name', null, ['class' => 'form-control', 'required' => 'required']) }}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="#" type="submit" class="btn custom-btn">Create</a>
+                                        <button href="" type="submit" class="btn custom-btn">Create</button>
                                     </div>
                                 </div>
                             </form>
