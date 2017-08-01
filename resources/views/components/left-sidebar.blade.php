@@ -14,24 +14,21 @@
         </div>
         @for ($i = 0; $i < 6; $i++)
             <div class="row watch-item">
-                <div class="col-md-12">
-                    <div class="col-md-8 no-padding">
+                <div class="col-md-5">
+                    <div class="row">
                         <div class="ticker">DCTH</div>
                     </div>
-                    <div class="col-md-4 no-padding">
-                        <p class="current-price">
-                            0.26
-                            <i class="fa fa-chevron-down green" aria-hidden="true"></i>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-8 no-padding">
+                    <div class="row">
                         <div class="company-name">Delcath Pharmaceuticals</div>
                     </div>
-                    <div class="col-md-4 no-padding">
-                        <p class="percent-change green">0.03 (23%)</p>
-                    </div>
+                </div>
+                <div class="col-md-3 price-holder">
+                    <p class="current-price">
+                        $0.26
+                    </p>
+                </div>
+                <div class="col-md-4 no-padding">
+                    <p class="percent-change green">$0.03 (23%) <i class="fa fa-chevron-up green" aria-hidden="true"></i></p>
                 </div>
             </div>
         @endfor

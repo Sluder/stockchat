@@ -12,7 +12,7 @@
 html, body {
   height: 100%;
   min-height: 100%;
-  background-color: $medium-grey;
+  background-color: $dark-grey;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -49,15 +49,11 @@ html, body {
     background-color: $grey;
     border: 0 solid $grey;
     border-radius: 5px;
-
-    &:focus {
-      box-shadow: none;
-    }
   }
 
   li {
     &:hover, &:focus {
-      border-bottom: 3px solid white;
+      border-bottom: 3px solid $accent;
       background-color: transparent;
       height: 50px;
     }
@@ -88,79 +84,112 @@ html, body {
 }
 
 // ---------- LEFT SIDEBAR ----------
-.watchlist, .groups {
-  text-align: center;
+.left-sidebar {
+  background-color: $dark-grey;
+  width: 23%;
 
-  .subheader {
-    margin-top: 20px;
+  .watchlist, .groups {
+    text-align: center;
+
+    .subheader {
+      margin-top: 20px;
+    }
+
+    .side-header {
+      margin-left: 5px;
+      margin-right: 5px;
+
+      .material-icon {
+        margin-top: 16px;
+        margin-left: 24px;
+      }
+    }
+
+    .watch-header,.group-header {
+      float: left;
+    }
+
+    .watch-item {
+      height: 50px;
+      margin: 0 5px 5px;
+      padding-top: 5px;
+      border-bottom: 1px solid $grey;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .ticker {
+        color: white;
+        text-align: left;
+        font-size: 15px;
+      }
+
+      .price-holder {
+        padding-right: 0;
+
+        .current-price {
+          color: white;
+          text-align: right;
+          font-size: 15px;
+          margin-top: 8px;
+        }
+      }
+
+      .percent-change {
+        color: white;
+        text-align: right;
+        font-size: 14px;
+        margin-top: 9px;
+      }
+
+      .company-name {
+        text-align: left;
+        font-size: 13px;
+        color: $light-grey;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 0;
+      }
+    }
+
+    .group-item {
+      border-bottom: 1px solid $grey;
+      height: 44px;
+      margin: 0 5px 5px;
+      padding-top: 3px;
+
+      .group-name {
+        text-align: left;
+        color: white;
+        padding-top: 10px;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
 
-  .side-header {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .watch-header, .group-header {
-    float: left;
-  }
-
-  .watch-item {
-    height: 50px;
-    margin: 0 5px 5px;
-    padding-top: 5px;
-    border-bottom: 1px solid $grey;
-
-    .ticker {
-      color: white;
-      text-align: left;
-      font-size: 15px;
-    }
-
-    .current-price {
-      color: white;
-      text-align: right;
-      font-size: 15px;
-      margin-bottom: 0;
-    }
-
-    .percent-change {
-      color: white;
-      text-align: right;
-      font-size: 13px;
-      margin-bottom: 0;
-    }
-
-    .company-name {
-      text-align: left;
-      font-size: 13px;
-      color: $light-grey;
-    }
-  }
-
-  .group-item {
-    border-bottom: 1px solid $grey;
-    height: 44px;
-    margin: 0 5px 5px;
-    padding-top: 3px;
-
-    .group-name {
-      text-align: left;
-      color: white;
-      padding-top: 10px;
-      font-size: 14px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .groups {
+    margin-top: 25px;
   }
 }
 
-.groups {
-  margin-top: 25px;
+// ---------- RIGHT SIDEBAR ----------
+.right-sidebar {
+  width: 23%;
+  background-color: $grey;
 }
 
-// ---------- NEW GROUP ----------
+// ---------- CENTER CONTENT ----------
+.center-content {
+  width: 54%;
+  border-top-left-radius: 5px;
+}
+
 .new-group {
-  margin: 32px 15px 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: $grey;
 
   .subheader {
     margin-top: 20px;
@@ -176,15 +205,27 @@ html, body {
   .join {
     margin-top: 15px;
     border-radius: 5px;
-    background-color: $grey;
-    padding: 10px;
+    background-color: $dark-grey;
+    padding: 15px 15px 30px;
+
+    .btn {
+      float: right;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
   }
 
   .create {
     margin-top: 15px;
     border-radius: 5px;
-    background-color: $grey;
-    padding: 10px;
+    background-color: $dark-grey;
+    padding: 15px 15px 30px;
+
+    .btn {
+      float: right;
+      padding-left: 17px;
+      padding-right: 17px;
+    }
   }
 
   form {
@@ -193,6 +234,10 @@ html, body {
     label {
       color: white;
       font-weight: normal;
+
+      span {
+        padding-left: 5px;
+      }
     }
     
     input {
@@ -210,11 +255,15 @@ html, body {
 
 // ---------- GLOBAL ----------
 .green {
-  color: $green !important;
+  color: #10ca10 !important;
 }
 
 .red {
   color: red !important;
+}
+
+.accent {
+  color: $accent;
 }
 
 .no-left {
@@ -226,25 +275,44 @@ html, body {
 }
 
 .subheader {
-  color: white;
+  color: $accent;
   text-align: center;
   display: inline-block;
   padding: 0 15px 3px;
 }
 
 .material-icon {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   font-size: 18px;
-  padding-top: 7px;
-  border-radius: 19px;
-  color: white;
-  background-color: $grey;
+  padding-top: 5px;
+  border-radius: 20px;
+  color: $dark-grey;
+  background-color: $accent;
   cursor: pointer;
+  -webkit-text-stroke: 2px $accent !important;
 
   &:hover {
-    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,0.5);
-    box-shadow: 0 0 9px -1px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+    box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+  }
+}
+
+input[type="text"] {
+  &:focus {
+    box-shadow: none;
+    border: 1px solid white;
+  }
+}
+
+.custom-btn {
+  background-color: $accent;
+  color: white;
+
+  &:hover {
+    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+    box-shadow: 0 0 9px -1px rgba(0,0,0,1);
   }
 }
