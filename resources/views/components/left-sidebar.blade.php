@@ -22,7 +22,7 @@
                         <div class="company-name">Delcath Pharmaceuticals</div>
                     </div>
                 </div>
-                <div class="col-md-3 price-holder">
+                <div class="col-md-3 price-holder no-padding">
                     <p class="current-price">
                         $0.26
                     </p>

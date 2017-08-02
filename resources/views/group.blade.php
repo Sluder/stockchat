@@ -30,6 +30,9 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="col-md-12">
+                            <p class="helper-text no-left">Suggested Groups</p>
+                        </div>
                     </div>
 
                     {{-- Creat a new group --}}

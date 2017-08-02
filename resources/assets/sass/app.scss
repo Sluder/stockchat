@@ -86,7 +86,7 @@ html, body {
 // ---------- LEFT SIDEBAR ----------
 .left-sidebar {
   background-color: $dark-grey;
-  width: 23%;
+  width: 22%;
 
   .watchlist, .groups {
     text-align: center;
@@ -98,10 +98,11 @@ html, body {
     .side-header {
       margin-left: 5px;
       margin-right: 5px;
+      border-bottom: 1px solid #757575;
 
       .material-icon {
-        margin-top: 16px;
-        margin-left: 24px;
+        margin-top: 12px;
+        margin-left: 19px;
       }
     }
 
@@ -120,16 +121,14 @@ html, body {
       .ticker {
         color: white;
         text-align: left;
-        font-size: 15px;
+        font-size: 14px;
       }
 
       .price-holder {
-        padding-right: 0;
-
         .current-price {
           color: white;
           text-align: right;
-          font-size: 15px;
+          font-size: 14px;
           margin-top: 8px;
         }
       }
@@ -138,7 +137,7 @@ html, body {
         color: white;
         text-align: right;
         font-size: 14px;
-        margin-top: 9px;
+        margin-top: 8px;
       }
 
       .company-name {
@@ -176,20 +175,20 @@ html, body {
 
 // ---------- RIGHT SIDEBAR ----------
 .right-sidebar {
-  width: 23%;
-  background-color: $grey;
+  width: 22%;
+  background-color: $medium-grey;
 }
 
 // ---------- CENTER CONTENT ----------
 .center-content {
-  width: 54%;
+  width: 56%;
   border-top-left-radius: 5px;
 }
 
 .new-group {
   padding-left: 30px;
   padding-right: 30px;
-  background-color: $grey;
+  background-color: $medium-grey;
 
   .subheader {
     margin-top: 20px;
@@ -205,7 +204,7 @@ html, body {
   .join {
     margin-top: 15px;
     border-radius: 5px;
-    background-color: $dark-grey;
+    background-color: $grey;
     padding: 15px 15px 30px;
 
     .btn {
@@ -218,7 +217,7 @@ html, body {
   .create {
     margin-top: 15px;
     border-radius: 5px;
-    background-color: $dark-grey;
+    background-color: $grey;
     padding: 15px 15px 30px;
 
     .btn {
@@ -242,8 +241,8 @@ html, body {
     
     input {
       color: white;
-      background-color: $grey;
-      border: 0 solid $grey;
+      background-color: $medium-grey;
+      border: 0;
       border-radius: 5px;
 
       &:focus {
@@ -267,7 +266,8 @@ html, body {
 }
 
 .no-left {
-  padding-left: 0;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .no-padding {
@@ -302,7 +302,7 @@ html, body {
 input[type="text"] {
   &:focus {
     box-shadow: none;
-    border: 1px solid white;
+    border: none;
   }
 }
 

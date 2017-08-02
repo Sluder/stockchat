@@ -18,7 +18,8 @@ class CreateGroupsTable extends Migration
             $table->string('name');
             $table->string('key');
             $table->integer('creator_id')->unsigned();
-            $table->string('objective');
+            $table->integer('user')->unsigned();
+            $table->string('objective')->nullable();
             $table->timestamps();
         });
     }
