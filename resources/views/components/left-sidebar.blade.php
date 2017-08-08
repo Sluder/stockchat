@@ -41,7 +41,7 @@
                 <h4 class="subheader group-header">Groups</h4>
             </div>
             <div class="col-md-2">
-                <a href="{{ route("view.group") }}">
+                <a href="{{ route("group.main") }}">
                     <div class="material-icon">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </div>

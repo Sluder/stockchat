@@ -7,6 +7,75 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 
+// ---------- GLOBAL ----------
+.green {
+  color: #10ca10 !important;
+}
+
+.red {
+  color: red !important;
+}
+
+.accent {
+  color: $accent;
+}
+
+.no-left {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.subheader {
+  color: white;
+  text-align: center;
+  display: inline-block;
+  padding: 0 15px 3px;
+}
+
+.material-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+  padding-top: 4px;
+  padding-left: 2px;
+  border-radius: 20px;
+  color: $dark-grey;
+  background-color: $accent;
+  cursor: pointer;
+  -webkit-text-stroke: 2px $accent !important;
+}
+
+input[type="text"] {
+  &:focus {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+.custom-btn {
+  background-color: $accent;
+  color: white;
+
+  &:hover, &:focus, &:active {
+    outline: none !important;
+    color: white;
+    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+    box-shadow: 0 0 9px -1px rgba(0,0,0,1);
+  }
+}
+
+.flash-message {
+  .alert-danger {
+    background-color: #c63332;
+    border-color: #c63332;
+    color: white;
+  }
+}
 
 // ---------- STYLES ----------
 html, body {
@@ -31,9 +100,13 @@ html, body {
   background-color: $dark-grey;
   margin-bottom: 0;
 
-  .navbar-header {
-    padding-top: 10px;
-    color: white;
+  .header {
+    width: 22%;
+
+    .navbar-header {
+      padding-top: 10px;
+      color: white;
+    }
   }
 
   .navbar-nav {
@@ -191,6 +264,7 @@ html, body {
   background-color: $medium-grey;
 
   .subheader {
+    color: $accent;
     margin-top: 20px;
     padding-bottom: 0;
   }
@@ -206,6 +280,46 @@ html, body {
     border-radius: 5px;
     background-color: $grey;
     padding: 15px 15px 30px;
+
+    .suggested-groups {
+      .suggested-header {
+        color: white;
+      }
+
+      .suggested-group-item {
+        .group-img {
+          width: 30px;
+          height: 30px;
+          position: relative;
+          overflow: hidden;
+          border-radius: 50%;
+
+          img {
+            display: inline;
+            margin: 0 auto;
+            height: 100%;
+            width: auto;
+          }
+        }
+
+        .group-name {
+          color: $light-grey;
+          padding-top: 5px;
+        }
+      }
+    }
+
+    .flash-message-mini {
+      margin-left: 15px;
+      margin-right: 15px;
+      margin-top: -20px;
+
+      .alert-danger {
+        background-color: transparent;
+        border: none;
+        color: red;
+      }
+    }
 
     .btn {
       float: right;
@@ -249,72 +363,5 @@ html, body {
         box-shadow: none;
       }
     }
-  }
-}
-
-// ---------- GLOBAL ----------
-.green {
-  color: #10ca10 !important;
-}
-
-.red {
-  color: red !important;
-}
-
-.accent {
-  color: $accent;
-}
-
-.no-left {
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-.no-padding {
-  padding: 0;
-}
-
-.subheader {
-  color: $accent;
-  text-align: center;
-  display: inline-block;
-  padding: 0 15px 3px;
-}
-
-.material-icon {
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  padding-top: 5px;
-  border-radius: 20px;
-  color: $dark-grey;
-  background-color: $accent;
-  cursor: pointer;
-  -webkit-text-stroke: 2px $accent !important;
-
-  &:hover {
-    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-    box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-  }
-}
-
-input[type="text"] {
-  &:focus {
-    box-shadow: none;
-    border: none;
-  }
-}
-
-.custom-btn {
-  background-color: $accent;
-  color: white;
-
-  &:hover, &:focus, &:active {
-    outline: none;
-    color: white;
-    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-    box-shadow: 0 0 9px -1px rgba(0,0,0,1);
   }
 }

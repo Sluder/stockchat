@@ -8,12 +8,13 @@
                 @include('components.left-sidebar')
 
                 <div class="col-md-6 full-height new-group center-content">
+
                     {{-- Join an existing group --}}
                     <div class="row join">
                         <h4 class="subheader">Join Group</h4>
                         <p class="helper-text">Enter a link of an existing group to join</p>
                         <div class="col-md-12">
-                            <form action="{{ route("join.group") }}" method="POST">
+                            <form action="{{ route("group.join") }}" method="POST">
                                 {!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-md-6">
@@ -24,31 +25,50 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    @include('components.flash-message-mini')
+                                </div>
+                                <div class="row">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn custom-btn">Join</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12">
-                            <p class="helper-text no-left">Suggested Groups</p>
+                        <div class="col-md-12 suggested-groups">
+                            <p class="suggested-header no-left">Suggested Groups</p>
+                            @foreach (\App\Group::getSuggested() as $group)
+                                <div class="row suggested-group-item">
+                                    <a href="{{ route('group.join', ['key' => $group->key]) }}">
+                                        <div class="col-md-6">
+                                            <div class="col-md-1">
+                                                <div class="group-img">
+                                                    <img src="{{ url('images/test2.png') }}" alt=""> {{-- todo: group name for alt --}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p class="group-name">{{ $group->name }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    {{-- Creat a new group --}}
+                    {{-- Create a new group --}}
                     <div class="row create">
                         <div class="col-md-12 no-left">
                             <h4 class="subheader">Create Group</h4>
                             <p class="helper-text">Create a new group for discussing stocks and sharing new ideas</p>
                         </div>
                         <div class="col-md-12">
-                            <form action="{{ route("create.group") }}" method="POST">
+                            <form action="{{ route("group.create") }}" method="POST">
                                 {!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="group-name">Group Name <span class="accent">*</span></label>
-                                            {{ Form::text('group-name', null, ['class' => 'form-control', 'required' => 'required']) }}
+                                            <label for="name">Group Name <span class="accent">*</span></label>
+                                            {{ Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) }}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
