@@ -7,20 +7,20 @@
                 {{-- col-md-3 --}}
                 @include('components.left-sidebar')
 
-                <div class="col-md-6 full-height new-group center-content">
+                <div class="col-md-6 full-height new-room center-content">
 
-                    {{-- Join an existing group --}}
+                    {{-- Join an existing room --}}
                     <div class="row join">
-                        <h4 class="subheader">Join Group</h4>
-                        <p class="helper-text">Enter a link of an existing group to join</p>
+                        <h4 class="subheader">Join a Room</h4>
+                        <p class="helper-text">Enter a link of an existing room to join</p>
                         <div class="col-md-12">
-                            <form action="{{ route("group.join") }}" method="POST">
+                            <form action="{{ route("room.join") }}" method="POST">
                                 {!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-room">
                                             <label for="link">Link</label>
-                                            {{ Form::text('link', null, ['class' => 'form-control', 'required' => 'required']) }}
+                                            {{ Form::text('link', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 45]) }}
                                         </div>
                                     </div>
                                 </div>
@@ -34,19 +34,19 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-12 suggested-groups">
-                            <p class="suggested-header no-left">Suggested Groups</p>
-                            @foreach (\App\Group::getSuggested() as $group)
-                                <div class="row suggested-group-item">
-                                    <a href="{{ route('group.join', ['key' => $group->key]) }}">
+                        <div class="col-md-12 suggested-rooms">
+                            <p class="suggested-header no-left">Suggested Rooms</p>
+                            @foreach (\App\room::getSuggested() as $room)
+                                <div class="row suggested-room-item">
+                                    <a href="{{ route('room.join', ['key' => $room->key]) }}">
                                         <div class="col-md-6">
                                             <div class="col-md-1">
-                                                <div class="group-img">
-                                                    <img src="{{ url('images/test2.png') }}" alt=""> {{-- todo: group name for alt --}}
+                                                <div class="room-img">
+                                                    <img src="{{ url('images/test2.png') }}" alt=""> {{-- todo: room name for alt --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-11">
-                                                <p class="group-name">{{ $group->name }}</p>
+                                                <p class="room-name">{{ $room->name }}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -54,33 +54,39 @@
                             @endforeach
                         </div>
                     </div>
-
-                    {{-- Create a new group --}}
+                    {{-- Create a new room --}}
                     <div class="row create">
                         <div class="col-md-12 no-left">
-                            <h4 class="subheader">Create Group</h4>
-                            <p class="helper-text">Create a new group for discussing stocks and sharing new ideas</p>
+                            <h4 class="subheader">Create a Room</h4>
+                            <p class="helper-text">Create a new room for discussing stocks and sharing new ideas</p>
                         </div>
                         <div class="col-md-12">
-                            <form action="{{ route("group.create") }}" method="POST">
+                            <form action="{{ route("room.create") }}" method="POST">
                                 {!! csrf_field() !!}
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Group Name <span class="accent">*</span></label>
-                                            {{ Form::text('name', null, ['class' => 'form-control', 'required' => 'required']) }}
+                                        <div class="form-room">
+                                            <label for="name">Room Name <span class="accent">*</span></label>
+                                            {{ Form::text('name', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 45]) }}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-room">
                                             <label for="objective">Objective</label>
-                                            {{ Form::text('objective', null, ['class' => 'form-control']) }}
+                                            {{ Form::text('objective', null, ['class' => 'form-control', 'maxlength' => 100]) }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    @foreach ($errors->all() as $error)
+                                        <div class="col-md-6">
+                                            <div class="error">{{ $error }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="row">
                                     <div class="col-md-12">
-                                        <button href="" type="submit" class="btn custom-btn">Create</button>
+                                        <button type="submit" class="btn custom-btn">Create</button>
                                     </div>
                                 </div>
                             </form>

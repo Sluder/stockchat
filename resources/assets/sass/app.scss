@@ -161,7 +161,7 @@ html, body {
   background-color: $dark-grey;
   width: 22%;
 
-  .watchlist, .groups {
+  .watchlist, .rooms {
     text-align: center;
 
     .subheader {
@@ -179,7 +179,7 @@ html, body {
       }
     }
 
-    .watch-header,.group-header {
+    .watch-header,.room-header {
       float: left;
     }
 
@@ -224,13 +224,13 @@ html, body {
       }
     }
 
-    .group-item {
+    .room-item {
       border-bottom: 1px solid $grey;
       height: 44px;
       margin: 0 5px 5px;
       padding-top: 3px;
 
-      .group-name {
+      .room-name {
         text-align: left;
         color: white;
         padding-top: 10px;
@@ -238,10 +238,17 @@ html, body {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
+      .empty {
+        text-align: center;
+        color: $light-grey;
+        padding-top: 10px;
+        font-size: 14px;
+      }
     }
   }
 
-  .groups {
+  .rooms {
     margin-top: 25px;
   }
 }
@@ -258,7 +265,15 @@ html, body {
   border-top-left-radius: 5px;
 }
 
-.new-group {
+.home-center {
+  background-color: $medium-grey;
+}
+
+.room {
+  background-color: $medium-grey;
+}
+
+.new-room {
   padding-left: 30px;
   padding-right: 30px;
   background-color: $medium-grey;
@@ -281,13 +296,13 @@ html, body {
     background-color: $grey;
     padding: 15px 15px 30px;
 
-    .suggested-groups {
+    .suggested-rooms {
       .suggested-header {
         color: white;
       }
 
-      .suggested-group-item {
-        .group-img {
+      .suggested-room-item {
+        .room-img {
           width: 30px;
           height: 30px;
           position: relative;
@@ -302,7 +317,7 @@ html, body {
           }
         }
 
-        .group-name {
+        .room-name {
           color: $light-grey;
           padding-top: 5px;
         }
@@ -310,7 +325,6 @@ html, body {
     }
 
     .flash-message-mini {
-      margin-left: 15px;
       margin-right: 15px;
       margin-top: -20px;
 
@@ -325,6 +339,7 @@ html, body {
       float: right;
       padding-left: 25px;
       padding-right: 25px;
+      margin-top: 20px;
     }
   }
 
@@ -338,6 +353,12 @@ html, body {
       float: right;
       padding-left: 17px;
       padding-right: 17px;
+      margin-top: 20px;
+    }
+
+    .error {
+      padding-left: 2px;
+      color: red;
     }
   }
 

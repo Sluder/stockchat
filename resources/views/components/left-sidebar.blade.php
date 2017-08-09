@@ -34,28 +34,35 @@
         @endfor
     </div>
 
-    {{-- Joined Groups --}}
-    <div class="groups">
+    {{-- Joined Rooms --}}
+    <div class="rooms">
         <div class="row side-header">
             <div class="col-md-10 no-left">
-                <h4 class="subheader group-header">Groups</h4>
+                <h4 class="subheader room-header">Groups</h4>
             </div>
             <div class="col-md-2">
-                <a href="{{ route("group.main") }}">
+                <a href="{{ route("room.main") }}">
                     <div class="material-icon">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </div>
                 </a>
             </div>
         </div>
-
-        @for ($i = 0; $i < 6; $i++)
-            <div class="row group-item">
-                <div class="col-md-8">
-                    <p class="group-name">Group Name Test</p>
+        @forelse (\App\User::find(1)->rooms as $room)
+            <a href="{{ env('APP_URL') . "group/" . $room->key }}">
+                <div class="row room-item">
+                    <div class="col-md-8">
+                        <p class="room-name">{{ $room->name }}</p>
+                    </div>
+                </div>
+            </a>
+        @empty
+            <div class="row room-item">
+                <div class="col-md-12">
+                    <p class="empty">You have not joined any groups</p>
                 </div>
             </div>
-        @endfor
+        @endforelse
     </div>
 </div>
 

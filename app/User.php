@@ -44,21 +44,31 @@ class User extends Model
 
     // ---------- GROUPS ----------
     // Get all joined groups for user
-    public function groups()
+    public function rooms()
     {
-        return $this->belongsToMany('App\Group', 'group_joins', "user_id", "group_id");
+        return $this->belongsToMany('App\Room', 'joined_rooms', "user_id", "room_id");
     }
 
     // Join a group
-    public function joinGroup($group_id)
+    public function joinRoom($room_id)
     {
-        $this->groups()->attach($group_id);
+        if (!$this->inGroup($room_id)) {
+            $this->rooms()->attach($room_id);
+        }
     }
 
     // Leave a group
-    public function leaveGroup($group_id)
+    public function leaveRoom($room_id)
     {
-        $this->groups()->detach($group_id);
+        if ($this->inRoom($room_id)) {
+            $this->rooms()->detach($room_id);
+        }
+    }
+
+    // Check if user is in the group
+    public function inRoom($room_id)
+    {
+        return $this->rooms->contains($room_id);
     }
 
 }

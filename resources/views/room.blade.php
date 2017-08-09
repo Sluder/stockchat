@@ -7,11 +7,11 @@
                 {{-- col-md-3 --}}
                 @include('components.left-sidebar')
 
-                <div class="col-md-6 full-height center-content home-center">
-                    <div class="row header">Watchlist Charts</div>
-
-                    @include('components.chart-widget', ['ticker' => "PLUG"])
+                <div class="col-md-6 full-height center-content room">
+                    <p style="color: white">{{ $room->name }}</p>
                 </div>
+
+                {{-- todo: leave button, admin settings --}}
 
                 {{-- col-md-3 --}}
                 @include('components.right-sidebar')

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupJoins extends Migration
+class CreateRoomJoins extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateGroupJoins extends Migration
      */
     public function up()
     {
-        Schema::create('group_joins', function (Blueprint $table) {
+        Schema::create('joined_rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('group_id')->unsigned();
+            $table->integer('room_id')->unsigned();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateGroupJoins extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_joins');
+        Schema::dropIfExists('joined_rooms');
     }
 }
