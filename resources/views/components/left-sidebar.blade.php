@@ -38,7 +38,7 @@
     <div class="rooms">
         <div class="row side-header">
             <div class="col-md-10 no-left">
-                <h4 class="subheader room-header">Groups</h4>
+                <h4 class="subheader room-header">Rooms</h4>
             </div>
             <div class="col-md-2">
                 <a href="{{ route("room.main") }}">
@@ -49,7 +49,7 @@
             </div>
         </div>
         @forelse (\App\User::find(1)->rooms as $room)
-            <a href="{{ env('APP_URL') . "group/" . $room->key }}">
+            <a href="{{ env('APP_URL') . $room->key }}">
                 <div class="row room-item">
                     <div class="col-md-8">
                         <p class="room-name">{{ $room->name }}</p>

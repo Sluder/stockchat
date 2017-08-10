@@ -1,11 +1,15 @@
 
 $dark-grey: #252525;
 $medium-grey: #303030;
-$grey: #424242;
+$grey: #63636e;
 $light-grey: #9e9e9e;
 
 $accent: #f5602a;
+$accent-hover: #e05624;
 
-// -- Alternates --
+// Overrides
+$popover-arrow-color: $dark-grey !default;
+
+// Alternates
 // yellow : #fcd736
 // orange : #f5602a

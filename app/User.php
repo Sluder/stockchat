@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Room;
 
 /**
  * @property mixed id
@@ -52,7 +53,8 @@ class User extends Model
     // Join a group
     public function joinRoom($room_id)
     {
-        if (!$this->inGroup($room_id)) {
+        if (!$this->inRoom($room_id)) {
+            Room::find($room_id)->increment('joined_users');
             $this->rooms()->attach($room_id);
         }
     }
@@ -61,6 +63,7 @@ class User extends Model
     public function leaveRoom($room_id)
     {
         if ($this->inRoom($room_id)) {
+            Room::find($room_id)->deccrement('joined_users');
             $this->rooms()->detach($room_id);
         }
     }

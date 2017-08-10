@@ -72,8 +72,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-room">
-                                            <label for="objective">Objective</label>
-                                            {{ Form::text('objective', null, ['class' => 'form-control', 'maxlength' => 100]) }}
+                                            <label for="message">
+                                                Message
+                                                <i class="fa fa-question-circle accent" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="A short blurb about your room"></i>
+                                            </label>
+                                            {{ Form::text('message', null, ['class' => 'form-control', 'maxlength' => 100]) }}
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +87,23 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="row">
+                                <div class="row field-row">
+                                    <div class="col-md-6">
+                                        <label for="is_private">
+                                            Private Room
+                                            <i class="fa fa-question-circle accent" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="Private is invite only"></i>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="switch">
+                                                    <input name="is_private" type="checkbox">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row field-row">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn custom-btn">Create</button>
                                     </div>

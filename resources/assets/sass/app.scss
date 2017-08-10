@@ -6,16 +6,15 @@
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+@import "styles";
 
 // ---------- GLOBAL ----------
 .green {
   color: #10ca10 !important;
 }
-
 .red {
   color: red !important;
 }
-
 .accent {
   color: $accent;
 }
@@ -27,6 +26,17 @@
 
 .no-padding {
   padding: 0;
+}
+
+.field-row {
+  padding-top: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
 .subheader {
@@ -47,6 +57,20 @@
   background-color: $accent;
   cursor: pointer;
   -webkit-text-stroke: 2px $accent !important;
+
+  &:hover {
+    background-color: $accent-hover;
+    -webkit-text-stroke: 2px $accent-hover !important;
+  }
+}
+
+label {
+  i {
+    padding-left: 5px;
+
+    &:hover {}
+    cursor: pointer;
+  }
 }
 
 input[type="text"] {
@@ -63,10 +87,8 @@ input[type="text"] {
   &:hover, &:focus, &:active {
     outline: none !important;
     color: white;
-    -webkit-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-    -moz-box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-    box-shadow: 0 0 9px -1px rgba(0,0,0,1);
-  }
+    background-color: $accent-hover;
+ }
 }
 
 .flash-message {
@@ -97,7 +119,7 @@ html, body {
 
 .navbar-fixed-top {
   height: 55px;
-  background-color: $dark-grey;
+  background-color: $medium-grey;
   margin-bottom: 0;
 
   .header {
@@ -119,8 +141,8 @@ html, body {
   .search-bar {
     margin-top: 10px;
     color: white;
-    background-color: $grey;
-    border: 0 solid $grey;
+    background-color: $dark-grey;
+    border: 0 solid $dark-grey;
     border-radius: 5px;
   }
 
@@ -129,6 +151,8 @@ html, body {
       border-bottom: 3px solid $accent;
       background-color: transparent;
       height: 50px;
+      -webkit-transition: .2s;
+      transition: .2s;
     }
 
     > a {
@@ -158,7 +182,7 @@ html, body {
 
 // ---------- LEFT SIDEBAR ----------
 .left-sidebar {
-  background-color: $dark-grey;
+  background-color: $medium-grey;
   width: 22%;
 
   .watchlist, .rooms {
@@ -256,27 +280,26 @@ html, body {
 // ---------- RIGHT SIDEBAR ----------
 .right-sidebar {
   width: 22%;
-  background-color: $medium-grey;
+  background-color: $dark-grey;
 }
 
 // ---------- CENTER CONTENT ----------
 .center-content {
   width: 56%;
-  border-top-left-radius: 5px;
 }
 
 .home-center {
-  background-color: $medium-grey;
+  background-color: $dark-grey;
 }
 
 .room {
-  background-color: $medium-grey;
+  background-color: $dark-grey;
 }
 
 .new-room {
   padding-left: 30px;
   padding-right: 30px;
-  background-color: $medium-grey;
+  background-color: $dark-grey;
 
   .subheader {
     color: $accent;
@@ -292,8 +315,7 @@ html, body {
 
   .join {
     margin-top: 15px;
-    border-radius: 5px;
-    background-color: $grey;
+    background-color: $medium-grey;
     padding: 15px 15px 30px;
 
     .suggested-rooms {
@@ -345,8 +367,7 @@ html, body {
 
   .create {
     margin-top: 15px;
-    border-radius: 5px;
-    background-color: $grey;
+    background-color: $medium-grey;
     padding: 15px 15px 30px;
 
     .btn {
@@ -376,7 +397,7 @@ html, body {
     
     input {
       color: white;
-      background-color: $medium-grey;
+      background-color: $dark-grey;
       border: 0;
       border-radius: 5px;
 
