@@ -6,7 +6,8 @@
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome.scss";
-@import "styles";
+@import "bootstrap";
+
 
 // ---------- GLOBAL ----------
 .green {
@@ -122,12 +123,20 @@ html, body {
   background-color: $medium-grey;
   margin-bottom: 0;
 
-  .header {
+  .side {
     width: 22%;
 
     .navbar-header {
       padding-top: 10px;
       color: white;
+    }
+
+    .buttons {
+      margin-top: 10px;
+
+      .join {
+        padding: 5px 15px;
+      }
     }
   }
 
@@ -165,13 +174,6 @@ html, body {
       }
     }
   }
-}
-
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  padding-top: 30px;
 }
 
 .full-height {

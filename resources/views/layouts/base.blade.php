@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Stock Chat</title>
+        <title>{{ env('SITE_NAME') }}</title>
 
         {{-- Styles --}}
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
@@ -13,9 +13,9 @@
             <nav class="navbar navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-3 header">
+                        <div class="col-md-3 side">
                             <div class="navbar-header">
-                                <h4>StockChat</h4>
+                                <h4>{{ env('SITE_NAME') }}</h4>
                             </div>
                         </div>
                         <div class="col-md-6 center-content">
@@ -23,7 +23,7 @@
                                 <div class="col-md-7 no-left">
                                     <ul class="nav navbar-nav">
                                         <li>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Streams</a>
+                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> Boards</a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> Inbox</a>
@@ -41,8 +41,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <p style="color: white">Profile stuff</p>
+                        <div class="col-md-3 side">
+                            @if (Auth::user())
+                                {{-- todo: user logged in stuff --}}
+                            @else
+                                <div class="buttons">
+                                    <a href="{{ route('login.view') }}" class="btn custom-btn join">Login</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -51,12 +57,6 @@
 
         <div class="body">
             @yield('content')
-        </div>
-
-        <div class="footer">
-            <div class="container-fluid">
-
-            </div>
         </div>
 
         {{-- Scripts --}}

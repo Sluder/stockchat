@@ -41,7 +41,7 @@
                 <h4 class="subheader room-header">Rooms</h4>
             </div>
             <div class="col-md-2">
-                <a href="{{ route("room.main") }}">
+                <a href="{{ route("room.view") }}">
                     <div class="material-icon">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </div>

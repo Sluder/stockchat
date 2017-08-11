@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class PageController extends Controller
 {
-    // Index
+    // User home
     public function home()
     {
-        return view('home');
+        if (Auth::user()){
+            return view('pages.home');
+        }
+        // User not logged in
+        return view('pages.home-default');
     }
 
 }

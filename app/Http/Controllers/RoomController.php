@@ -10,17 +10,17 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     // Page to join or create room
-    public function RoomAdd()
+    public function roomShow()
     {
-        return view("Room-add");
+        return view("pages.rooms.room-add");
     }
 
-    // room page displaying chat
+    // Room page displaying chat
     public function room($key)
     {
         $room = Room::where('key', $key)->first();
 
-        return view('room', compact('room'));
+        return view('pages.rooms.room', compact('room'));
     }
 
     // Join room from URL
@@ -33,7 +33,6 @@ class RoomController extends Controller
         if ($key === null) {
             if (starts_with($request->get("link"), env("APP_URL"))) {
                 $room = Room::where("key", explode(env("APP_URL"), $request->get("link"))[1])->first();
-
                 $room === null ? $failed = true : $user->joinRoom($room->id);
             } else {
                 $failed = true;
@@ -41,7 +40,6 @@ class RoomController extends Controller
         // User joining from direct URL
         } else {
             $room = Room::where("key", $key)->first();
-
             $room === null ? $failed = true : $user->joinRoom($room->id);
         }
 
