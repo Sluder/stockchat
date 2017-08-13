@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Room;
 
 /**
  * @property mixed id
@@ -16,6 +15,12 @@ class User extends Model
 
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    public static $skills_level = [
+        'Beginner' => 'Beginner',
+        'Intermediate' => 'Intermediate',
+        'Expert' => 'Expert'
     ];
 
     // ---------- FOLLOWING ----------

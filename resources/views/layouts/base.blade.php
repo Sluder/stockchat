@@ -7,6 +7,8 @@
 
         {{-- Styles --}}
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+
+        @yield('styles')
     </head>
     <body>
         <div class="wrapper">
@@ -46,7 +48,7 @@
                                 {{-- todo: user logged in stuff --}}
                             @else
                                 <div class="buttons">
-                                    <a href="{{ route('login.view') }}" class="btn custom-btn join">Login</a>
+                                    <a href="{{ route('login.view') }}" class="btn custom-btn login">Login</a>
                                 </div>
                             @endif
                         </div>

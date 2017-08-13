@@ -409,3 +409,74 @@ html, body {
     }
   }
 }
+
+.welcome {
+  .welcome-header {
+    color: white;
+    font-size: 65px;
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .helper-text {
+    text-align: center;
+    font-size: 25px;
+    color: $light-grey;
+  }
+
+  .account-buttons {
+    text-align: center;
+    margin-top: 2%;
+
+    .join-btn {
+      padding-left: 25px;
+      padding-right: 25px;
+      margin-right: 20px;
+    }
+
+    .login-btn {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .join-panel, .login-panel {
+    background-color: $medium-grey;
+    margin-top: 20px;
+    border-radius: 5px;
+
+    form {
+      padding: 25px;
+
+      .header {
+        color: white;
+        font-size: 20px;
+        text-align: left;
+      }
+
+      .form-group {
+        text-align: left;
+
+        label {
+          color: white;
+          font-weight: normal;
+        }
+
+        input, select {
+          color: white;
+          background-color: $dark-grey;
+          border: 0;
+          border-radius: 5px;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+
+      button {
+        float: right;
+      }
+    }
+  }
+}
