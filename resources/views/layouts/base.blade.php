@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-md-3 side">
                             @if (Auth::user())
-                                {{-- todo: user logged in stuff --}}
+                                <p style="color: white">{{ Auth::user()->username }}</p>
                             @else
                                 <div class="buttons">
                                     <a href="{{ route('login.view') }}" class="btn custom-btn login">Login</a>

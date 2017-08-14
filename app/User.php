@@ -3,15 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-/**
- * @property mixed id
- */
-class User extends Model
+class User extends Model implements Authenticatable
 {
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    use AuthenticatableTrait;
+
+    protected $table = 'users';
+    public $timestamps = true;
+    protected $guarded = [];
 
     protected $hidden = [
         'password', 'remember_token',
@@ -21,6 +22,18 @@ class User extends Model
         'Beginner' => 'Beginner',
         'Intermediate' => 'Intermediate',
         'Expert' => 'Expert'
+    ];
+
+    // Request validation rules
+    public static $join_rules = [
+        'name' => 'required|min:1|max:40',
+        'username' => 'required|min:1|max:20',
+        'email' => 'required|email|min:1|max:5st0',
+        'password' => 'required|min:5|max:50',
+    ];
+    public static $login_rules = [
+        'login' => 'required|min:1|max:50',
+        'password' => 'required|min:5|max:50',
     ];
 
     // ---------- FOLLOWING ----------

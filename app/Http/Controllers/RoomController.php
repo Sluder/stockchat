@@ -26,7 +26,7 @@ class RoomController extends Controller
     // Join room from URL
     public function join($key = null, Request $request)
     {
-        $user = User::find(1);
+        $user = Auth::user();
         $failed = false;
 
         // User joining from form
@@ -53,8 +53,7 @@ class RoomController extends Controller
 
     public function leave(Room $room)
     {
-        $user = User::find(1);
-        $user->leaveRoom($room->id);
+        Auth::user()->leaveRoom($room->id);
 
         return redirect()->route('home');
     }
@@ -62,7 +61,7 @@ class RoomController extends Controller
     // Create new room (Join from URL)
     public function create(Request $request)
     {
-        $validation = Validator::make($request->all(), Room::$rules, Room::$messages);
+        $validation = Validator::make($request->all(), Room::$rules);
         if ($validation->fails()) {
             return redirect()->back()->withInput()->withErrors($validation->messages());
         }
@@ -78,12 +77,12 @@ class RoomController extends Controller
             'key' => $key,
             'message' => $request->get('message'),
             'room_icon' => "",
-            'creator_id' => User::find(1)->id,
+            'creator_id' => Auth::user()->id,
             'is_private' => $request->has('is_private')
         ]);
         $room->save();
 
-        User::find(1)->joinRoom($room->id);
+        Auth::user()->joinRoom($room->id);
 
         return redirect()->route('room', ['key' => $key]);
     }

@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="collapse join-panel">
-                        <form action="{{ route("join.new") }}" method="POST">
+                        <form action="{{ route("join") }}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-12">
@@ -44,7 +44,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="username">Username</label>
-                                        {{ Form::text('username', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 20]) }}
+                                        {{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 20, 'onchange' => "checkInfo('username')"]) }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="red" id="username-error" style="display: none">Username already exists.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +57,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        {{ Form::text('email', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 35]) }}
+                                        {{ Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 50, 'onchange' => "checkInfo('email')"]) }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="red" id="email-error" style="display: none">Email already exists.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +70,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'autocomplete' => 'off', 'maxlength' => 50]) }}
+                                        {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'autocomplete' => 'off', 'minlength' => 5, 'maxlength' => 50]) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -70,6 +80,15 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (!$errors->join_errors->isEmpty())
+                                <div class="row">
+                                    <div class="col-md-12 error-container join-errors">
+                                        @foreach ($errors->join_errors->all() as $error)
+                                            <p class="red">{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn custom-btn">Sign Up</button>
@@ -78,7 +97,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>{{-- /join-panel --}}
             {{-- Login panel --}}
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
@@ -91,21 +110,28 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="username">Username or Email</label>
-                                        {{ Form::text('email', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 20]) }}
+                                        <label for="login">Username or Email</label>
+                                        {{ Form::text('login', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 50]) }}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password</label>
                                         {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'autocomplete' => 'off', 'maxlength' => 50]) }}
                                     </div>
                                 </div>
                             </div>
+                            @if (!$errors->login_errors->isEmpty())
+                                <div class="row">
+                                    <div class="col-md-12 error-container login-errors">
+                                        @foreach ($errors->login_errors->all() as $error)
+                                            <p class="red">{{ $error }}</p>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn custom-btn">Sign In</button>
@@ -114,7 +140,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>{{-- /login-panel --}}
         </div>
     </div>
 @endsection
@@ -124,14 +150,44 @@
         window.onload = function() {
             $('.join-btn').click(function() {
                if ($('.login-panel').attr('aria-expanded', 'true')) {
-                   $('.login-panel').attr('aria-expanded', 'false');
-                   $('.login-panel').removeClass('in');
+                   $('.login-panel').attr('aria-expanded', 'false').removeClass('in');
                }
             });
             $('.login-btn').click(function() {
                 if ($('.join-panel').attr('aria-expanded', 'true')) {
-                    $('.join-panel').attr('aria-expanded', 'false');
-                    $('.join-panel').removeClass('in');
+                    $('.join-panel').attr('aria-expanded', 'false').removeClass('in');
+                }
+            });
+
+            // Expand panels on errors
+            if ($('.error-container').hasClass('join-errors')){
+                $('.join-panel').attr('aria-expanded', 'true').addClass('in');
+            }
+            if ($('.error-container').hasClass('login-errors')){
+                $('.login-panel').attr('aria-expanded', 'true').addClass('in');
+            }
+        };
+
+        // Checks if username or email is already used
+        function checkInfo(field) {
+            var field_val = $('#' + field).val();
+            $.ajax({
+                type: "GET",
+                url: "/check/" + field_val,
+                success:function(used) {
+                    if (used) {
+                        if (field === "username") {
+                            document.getElementById('username-error').style.display = 'inline-block';
+                        } else if (field === "email") {
+                            document.getElementById('email-error').style.display = 'inline-block';
+                        }
+                    } else {
+                        if (field === "username") {
+                            document.getElementById('username-error').style.display = 'none';
+                        } else if (field === "email") {
+                            document.getElementById('email-error').style.display = 'none';
+                        }
+                    }
                 }
             });
         }

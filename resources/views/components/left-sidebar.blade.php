@@ -48,7 +48,7 @@
                 </a>
             </div>
         </div>
-        @forelse (\App\User::find(1)->rooms as $room)
+        @forelse (Auth::user()->rooms as $room)
             <a href="{{ env('APP_URL') . $room->key }}">
                 <div class="row room-item">
                     <div class="col-md-8">

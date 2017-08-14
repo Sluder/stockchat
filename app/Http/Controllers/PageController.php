@@ -22,7 +22,7 @@ class PageController extends Controller
             return view('pages.home');
         }
         // User not logged in
-        return view('pages.home-default');
+        return view('pages.welcome');
     }
 
 }

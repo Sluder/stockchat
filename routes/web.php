@@ -7,8 +7,9 @@ Route::post('/login/view', 'AccountController@loginShow')->name('login.view');
 
 
 // ----- Account
-Route::post('/join/new', 'AccountController@join')->name('join.new');
-Route::post('/login', 'AuthController@login')->name('login');
+Route::post('/join', 'Auth\AuthController@join')->name('join');
+Route::post('/login', 'Auth\AuthController@login')->name('login');
+Route::get('/check/{data}', 'Auth\AuthController@checkAvailability');
 
 
 // ----- Groups

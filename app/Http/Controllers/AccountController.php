@@ -12,10 +12,4 @@ class AccountController extends Controller
         return view('pages.account.login');
     }
 
-    // New user sign-up
-    public function join(Request $request)
-    {
-        dd($request->all());
-    }
-
 }
