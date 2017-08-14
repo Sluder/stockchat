@@ -38,17 +38,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        {{ Form::text('name', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 40]) }}
+                                        {{ Form::text('name', null, ['class' => 'form-control', 'required' => 'required', 'maxlength' => 50]) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="username">Username</label>
-                                        {{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 20, 'onchange' => "checkInfo('username')"]) }}
+                                        {{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 15, 'onchange' => "checkInfo('username')"]) }}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p class="red" id="username-error" style="display: none">Username already exists.</p>
+                                            <p class="red" id="username-error">Username already exists.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -57,11 +57,11 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        {{ Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 50, 'onchange' => "checkInfo('email')"]) }}
+                                        {{ Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 100, 'onchange' => "checkInfo('email')"]) }}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p class="red" id="email-error" style="display: none">Email already exists.</p>
+                                            <p class="red" id="email-error">Email already exists.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -69,13 +69,19 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="password">Password</label>
-                                        {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'autocomplete' => 'off', 'minlength' => 5, 'maxlength' => 50]) }}
+                                        <label for="password">
+                                            Password
+                                            <i class="fa fa-question-circle accent" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="More than 5 characters"></i>
+                                        </label>
+                                        {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'autocomplete' => 'off', 'minlength' => 5, 'maxlength' => 100]) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="skills_level">Skills Level</label>
+                                        <label for="skills_level">
+                                            Skills Level
+                                            <i class="fa fa-question-circle accent" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="Helps determine the content you receive"></i>
+                                        </label>
                                         {{ Form::select('skills_level', \App\User::$skills_level, null, ['class' => 'form-control']) }}
                                     </div>
                                 </div>

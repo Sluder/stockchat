@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -72,7 +73,7 @@ class RoomController extends Controller
             $key = substr(uniqid(), 6);
         }
 
-        $room = new Room([
+        $room = Room::create([
             'name' => $request->get('name'),
             'key' => $key,
             'message' => $request->get('message'),
@@ -80,7 +81,6 @@ class RoomController extends Controller
             'creator_id' => Auth::user()->id,
             'is_private' => $request->has('is_private')
         ]);
-        $room->save();
 
         Auth::user()->joinRoom($room->id);
 

@@ -74,7 +74,7 @@ class AuthController extends Controller
     // Checks if a user exists with username or email
     public function checkAvailability($data)
     {
-        return response()->json(User::where('username', $data)->orWhere('email', $data)->exists());
+        return response()->json(User::where('username', 'LIKE', '%' . $data . '%')->orWhere('email', $data)->exists());
     }
 
 }
