@@ -9,6 +9,8 @@ Route::post('/login/view', 'AccountController@loginShow')->name('login.view');
 // ----- Account
 Route::post('/join', 'Auth\AuthController@join')->name('join');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
+Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('google.login');
+Route::get('/login/callback', 'Auth\AuthController@googleCallback');
 Route::get('/check/{data}', 'Auth\AuthController@checkAvailability');
 
 

@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_PUBLIC'),
+        'client_secret' => env('GOOGLE_PRIVATE'),
+        'redirect' => env('APP_URL') . 'login/callback',
+    ],
 ];

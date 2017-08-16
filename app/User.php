@@ -12,7 +12,7 @@ class User extends Model implements Authenticatable
 
     protected $table = 'users';
     public $timestamps = true;
-    protected $guarded = [];
+    protected $fillable = ['name', 'email', 'username', 'username_last_changed', 'settings_id', 'password'];
 
     protected $hidden = [
         'password', 'remember_token',

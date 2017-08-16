@@ -77,4 +77,40 @@ class AuthController extends Controller
         return response()->json(User::where('username', 'LIKE', '%' . $data . '%')->orWhere('email', $data)->exists());
     }
 
+    // Redirect to Google login
+    public function redirectToGoogle()
+    {
+        return $this->socialite()->redirect();
+    }
+
+    // Google auth callback
+    public function googleCallback()
+    {
+        $googleUser = $this->socialite()->user();
+        $user = User::where('email', $googleUser->email)->first();
+
+        // Create new user from Google if doesn't exist
+        if ($user === NULL) {
+            $settings = Settings::create([
+                'skills_level' => "Beginner"
+            ]);
+
+            $user = User::create([
+                'name' => $googleUser->name,
+                'email' => $googleUser->email,
+                'username' => $googleUser->name,
+                'username_last_changed' => date("Y-m-d H:i:s"),
+                'settings_id' => $settings->id,
+            ]);
+        }
+        Auth::login($user, true);
+
+        return redirect()->route('home');
+    }
+
+    private function socialite()
+    {
+        return \Socialite::driver('google');
+    }
+
 }

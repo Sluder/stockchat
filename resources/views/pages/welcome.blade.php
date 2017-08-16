@@ -22,6 +22,9 @@
             <div class="row account-buttons">
                 <button class="btn custom-btn join-btn" data-toggle="collapse" data-target=".join-panel">Join</button>
                 <button class="btn custom-btn login-btn" data-toggle="collapse" data-target=".login-panel">Login</button>
+                <a href="{{ route('google.login') }}" class="btn custom-btn google-btn">
+                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                </a>
             </div>
             {{-- Join panel --}}
             <div class="row">

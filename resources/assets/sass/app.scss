@@ -93,6 +93,16 @@ input[type="text"] {
  }
 }
 
+.google-btn {
+  background-color: #c0372a;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  &:hover {
+    background-color: #9e3429;
+  }
+}
+
 .flash-message {
   .alert-danger {
     background-color: #c63332;
@@ -423,6 +433,7 @@ html, body {
     text-align: center;
     font-size: 25px;
     color: $light-grey;
+    margin-top: -15px;
   }
 
   .account-buttons {
@@ -436,8 +447,8 @@ html, body {
     }
 
     .login-btn {
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
   }
 
@@ -479,7 +490,7 @@ html, body {
         }
       }
 
-      button {
+      .btn {
         float: right;
       }
     }
