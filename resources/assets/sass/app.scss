@@ -151,6 +151,59 @@ html, body {
     }
   }
 
+  .profile {
+    margin-top: 8px;
+
+    .profile-name {
+      color: white;
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+
+      .profile-img {
+        border-radius: 50%;
+        width: 40px;
+        background-color: $accent;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        color: white;
+        background-color: $medium-grey;
+        min-width: 150px;
+        border-radius: 5px;
+        z-index: 1;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+
+          &:hover {
+            color: $accent;
+          }
+
+          .item {
+            padding: 8px 0 8px 10px;
+          }
+
+          .bottom {
+            border-bottom: 1px solid $grey;
+          }
+        }
+      }
+
+      &:hover .dropdown-content {
+        display: block;
+      }
+    }
+  }
+
   .navbar-nav {
     i {
       font-size: 20px;
@@ -237,7 +290,7 @@ html, body {
       .price-holder {
         .current-price {
           color: white;
-          text-align: right;
+          text-align: center;
           font-size: 14px;
           margin-top: 8px;
         }

@@ -11,6 +11,7 @@ Route::post('/join', 'Auth\AuthController@join')->name('join');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('google.login');
 Route::get('/login/callback', 'Auth\AuthController@googleCallback');
+Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('/check/{data}', 'Auth\AuthController@checkAvailability');
 
 

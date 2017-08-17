@@ -12,7 +12,7 @@ class User extends Model implements Authenticatable
 
     protected $table = 'users';
     public $timestamps = true;
-    protected $fillable = ['name', 'email', 'username', 'username_last_changed', 'settings_id', 'password'];
+    protected $fillable = ['name', 'email', 'profile_img', 'username', 'username_last_changed', 'settings_id', 'password'];
 
     protected $hidden = [
         'password', 'remember_token',
@@ -27,7 +27,7 @@ class User extends Model implements Authenticatable
     // Request validation rules
     public static $join_rules = [
         'name' => 'required|min:1|max:50',
-        'username' => 'required|min:1|max:15',
+        'username' => 'required|min:1|max:20',
         'email' => 'required|email|min:1|max:100',
         'password' => 'required|min:5|max:100',
     ];

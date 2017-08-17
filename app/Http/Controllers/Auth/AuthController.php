@@ -68,7 +68,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return view('pages.account. logout');
+        return view('pages.account.logout');
     }
 
     // Checks if a user exists with username or email
@@ -98,6 +98,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
+                'profile_img' => substr($googleUser->avatar, 0, -2) . "100",
                 'username' => $googleUser->name,
                 'username_last_changed' => date("Y-m-d H:i:s"),
                 'settings_id' => $settings->id,

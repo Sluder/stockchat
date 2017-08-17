@@ -47,7 +47,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="username">Username</label>
-                                        {{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 15, 'onchange' => "checkInfo('username')"]) }}
+                                        {{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'required' => 'required', 'maxlength' => 20, 'onchange' => "checkInfo('username')"]) }}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">

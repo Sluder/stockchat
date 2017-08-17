@@ -43,9 +43,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 side">
+                        <div class="col-md-3 side profile">
                             @if (Auth::user())
-                                <p style="color: white">{{ Auth::user()->username }}</p>
+                                <p class="profile-name">{{ Auth::user()->username }}</p>
+                                <div class="dropdown">
+                                    <img class="profile-img" src="{{ Auth::user()->profile_img }}" alt="{{ Auth::user()->name }}">
+                                    <div class="dropdown-content">
+                                        <a href="">
+                                            <div class="item bottom">Settings</div>
+                                        </a>
+                                        <a href="{{ route("logout") }}">
+                                            <div class="item">Logout</div>
+                                        </a>
+                                    </div>
+                                </div>
                             @else
                                 <div class="buttons">
                                     <a href="{{ route('login.view') }}" class="btn custom-btn login">Login</a>
