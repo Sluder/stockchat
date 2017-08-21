@@ -27,21 +27,20 @@ class RoomController extends Controller
     // Join room from URL
     public function join($key = null, Request $request)
     {
-        $user = Auth::user();
         $failed = false;
 
         // User joining from form
         if ($key === null) {
             if (starts_with($request->get("link"), env("APP_URL"))) {
                 $room = Room::where("key", explode(env("APP_URL"), $request->get("link"))[1])->first();
-                $room === null ? $failed = true : $user->joinRoom($room->id);
+                $room === null ? $failed = true : Auth::user()->joinRoom($room->id);
             } else {
                 $failed = true;
             }
         // User joining from direct URL
         } else {
             $room = Room::where("key", $key)->first();
-            $room === null ? $failed = true : $user->joinRoom($room->id);
+            $room === null ? $failed = true : Auth::user()->joinRoom($room->id);
         }
 
         if ($failed) {
@@ -78,7 +77,7 @@ class RoomController extends Controller
             'key' => $key,
             'message' => $request->get('message'),
             'room_icon' => "",
-            'creator_id' => Auth::user()->id,
+            'creator_id' => Auth::id(),
             'is_private' => $request->has('is_private')
         ]);
 

@@ -10,7 +10,7 @@ class PageController extends Controller
     // Welcome page or home
     public function index()
     {
-        if (Auth::user()) {
+        if (Auth::check()) {
             return view('pages.home');
         }
         return view('pages.welcome');
@@ -19,7 +19,7 @@ class PageController extends Controller
     // User home
     public function home()
     {
-        if (Auth::user()){
+        if (Auth::check()){
             return view('pages.home');
         }
         // User not logged in

@@ -19,7 +19,7 @@
                         <div class="col-md-2 no-right">
                             <div class="row logo">
                                 <div class="col-md-12">
-                                    <p style="color:white">{{ env('SITE_NAME') }}</p>
+                                    <p style="color:white">Temp</p>
                                 </div>
                             </div>
                             <div class="row nav-icons">
@@ -42,11 +42,11 @@
                         </div>
                         <div class="col-md-8">
                             <div class="search-bar">
-                                    {{ Form::text('search', null, ['class' => 'form-control search-bar', 'placeholder' => 'Search for stocks, people & rooms']) }}
+                                {{ Form::text('search', null, ['class' => 'form-control search-bar', 'placeholder' => 'Search for stocks, people & rooms']) }}
                             </div>
                         </div>
                         <div class="col-md-2 user-profile">
-                            @if (Auth::user())
+                            @if (Auth::check())
                                 <p class="profile-name">{{ Auth::user()->username }}</p>
                                 <div class="menu">
                                     <img class="profile-img" src="{{ Auth::user()->profile_img }}" alt="{{ Auth::user()->name }}" data-toggle="dropdown" aria-expanded="true">
@@ -78,6 +78,36 @@
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
         <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
+
+        <script type="text/javascript">
+            // Checks if username or email is already used
+            function checkInfo(field) {
+                var field_val = $('#' + field).val();
+                var username = {!! json_encode(Auth::user()->username) !!};
+
+                if (field_val !== username) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/check/" + field_val,
+                        success:function(used) {
+                            if (used) {
+                                if (field === "username") {
+                                    document.getElementById('username-error').style.display = 'inline-block';
+                                } else if (field === "email") {
+                                    document.getElementById('email-error').style.display = 'inline-block';
+                                }
+                            } else {
+                                if (field === "username") {
+                                    document.getElementById('username-error').style.display = 'none';
+                                } else if (field === "email") {
+                                    document.getElementById('email-error').style.display = 'none';
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        </script>
 
         @yield('scripts')
     </body>

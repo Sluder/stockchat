@@ -50,6 +50,15 @@ label {
   }
 }
 
+input[readonly] {
+  color: $light !important;
+}
+
+.hint {
+  padding-left: 5px;
+  cursor: pointer;
+}
+
 .custom-btn {
   background-color: $accent;
   color: white;
@@ -59,6 +68,12 @@ label {
     color: white;
     background-color: $accent-hover;
  }
+}
+
+button {
+  &:hover, &:focus, &:active {
+    outline: none !important;
+  }
 }
 
 .google-btn {
@@ -79,10 +94,14 @@ label {
   }
 }
 
+#username-error, #email-error {
+  display: none;
+}
+
 .card {
   background-color: $light;
   border-radius: 5px;
-  padding: 20px;
+  padding: 25px;
   margin-bottom: 15px;
 }
 
@@ -269,6 +288,60 @@ html, body {
 }
 
 
+// ---------- Modals ----------
+.update-account-modal, .follow-account-modal, .unfollow-account-modal {
+  .modal-content {
+    background-color: $light;
+    padding: 12px;
+
+    .modal-title {
+      color: white;
+      font-size: 21px;
+    }
+
+    .close {
+      color: $lightest;
+      font-weight: normal;
+      text-shadow: none;
+      opacity: .7;
+      margin-top: 0;
+    }
+
+    form {
+      margin-top: 10px;
+
+      .form-group {
+        text-align: left;
+
+        label {
+          color: white;
+          font-weight: normal;
+        }
+
+        input, select {
+          color: white;
+          background-color: $dark;
+          border: 0;
+          border-radius: 5px;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+
+    .custom-btn {
+      float: right;
+    }
+
+    .follow-btn {
+      margin-top: 20px;
+    }
+  }
+}
+
+
 // ---------- Pages ----------
 .welcome {
   .welcome-header {
@@ -308,10 +381,6 @@ html, body {
 
     form {
       padding: 25px;
-
-      #username-error, #email-error {
-        display: none;
-      }
 
       .panel-header {
         color: white;
@@ -450,7 +519,16 @@ html, body {
   }
 
   .account-info {
-    padding-left: 40px;
+    padding-left: 75px;
+
+    .bottom {
+      margin-top: 10px;
+    }
+
+    button {
+      float: right;
+      margin-top: 17px;
+    }
   }
 
   .info {

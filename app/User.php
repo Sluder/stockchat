@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Model implements Authenticatable
 {
@@ -36,7 +37,13 @@ class User extends Model implements Authenticatable
         'password' => 'required|min:5|max:100',
     ];
 
-    // ---------- FOLLOWING ----------
+    // Retrieves settings for the user
+    public function settings()
+    {
+        return $this->belongsTo('App\Settings');
+    }
+
+    // ---------- Follows ----------
     // Get all followers of the user
     public function followers()
     {
@@ -49,19 +56,25 @@ class User extends Model implements Authenticatable
         return $this->belongsToMany('App\User', 'followers', 'user_id', 'follow_id');
     }
 
-    // Follow $user
-    public function follow()
+    // Check is user is following another
+    public function isFollowing($id)
     {
-        $this->followers()->attach(2);
+        return $this->following->contains($id);
+    }
+
+    // Follow $user
+    public function follow($id)
+    {
+        $this->following()->attach($id);
     }
 
     // Un-follow $user
-    public function unfollow()
+    public function unfollow($id)
     {
-        $this->followers()->detach(2);
+        $this->following()->detach($id);
     }
 
-    // ---------- GROUPS ----------
+    // ---------- Rooms ----------
     // Get all joined groups for user
     public function rooms()
     {
@@ -86,7 +99,7 @@ class User extends Model implements Authenticatable
         }
     }
 
-    // Check if user is in the group
+    // Check if user has joined a room
     public function inRoom($room_id)
     {
         return $this->rooms->contains($room_id);

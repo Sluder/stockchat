@@ -8,12 +8,17 @@ Route::post('/login/view', 'AccountController@loginShow')->name('login.view');
 
 // ----- Account
 Route::post('/join', 'Auth\AuthController@join')->name('join');
+Route::get('/check/{data}', 'Auth\AuthController@checkAvailability');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('google.login');
 Route::get('/login/callback', 'Auth\AuthController@googleCallback');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
+
 Route::get('/profile/{username}', 'PageController@profile')->name('profile');
-Route::get('/check/{data}', 'Auth\AuthController@checkAvailability');
+Route::post('/profile/update', 'AccountController@updateProfile')->name('profile.update');
+
+Route::get('/follow/{user}', 'AccountController@follow')->name('follow');
+Route::get('/unfollow/{user}', 'AccountController@unfollow')->name('unfollow');
 
 
 // ----- Groups
