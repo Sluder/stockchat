@@ -3,34 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Room;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    // Page to join or create room
+    // Join or create a room
     public function roomShow()
     {
         return view("pages.rooms.room-add");
     }
 
-    // Room page displaying chat
+    // Individual room view (Auto join user if not already)
     public function room($key)
     {
         $room = Room::where('key', $key)->first();
 
+        if (!$room) {
+            abort(404);
+
+        } else if (!Auth::user()->inRoom($room->id)) {
+            Auth::user()->joinRoom($room->id);
+        }
+
         return view('pages.rooms.room', compact('room'));
     }
 
-    // Join room from URL
+    // Join room from direct URL or inputting
     public function join($key = null, Request $request)
     {
         $failed = false;
 
         // User joining from form
-        if ($key === null) {
+        if (!$key) {
             if (starts_with($request->get("link"), env("APP_URL"))) {
                 $room = Room::where("key", explode(env("APP_URL"), $request->get("link"))[1])->first();
                 $room === null ? $failed = true : Auth::user()->joinRoom($room->id);
@@ -46,11 +52,12 @@ class RoomController extends Controller
         if ($failed) {
             $request->session()->flash('alert-danger', 'We were unable to find that room. Please ensure the link is correct');
 
-            return view('room-add');
+            return view('pages.rooms.room-add');
         }
         return redirect()->route('room', ['key' => $room->key]);
     }
 
+    // Auth user leave a room
     public function leave($room_id)
     {
         Auth::user()->leaveRoom($room_id);
@@ -58,7 +65,7 @@ class RoomController extends Controller
         return redirect()->route('home');
     }
 
-    // Create new room (Join from URL)
+    // Create new room (Room has 6-digit unique key)
     public function create(Request $request)
     {
         $validation = Validator::make($request->all(), Room::$rules);

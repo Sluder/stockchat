@@ -106,6 +106,16 @@ button {
 }
 
 
+// ---------- Error pages ----------
+.error-404 {
+  p {
+    color: white;
+    text-align: center;
+    font-size: 100px;
+  }
+}
+
+
 // ---------- Layout ----------
 html, body {
   height: 100%;
@@ -175,6 +185,7 @@ html, body {
         border-radius: 50%;
         width: 40px;
         background-color: white;
+        cursor: pointer;
       }
 
       .dropdown-menu {
@@ -304,7 +315,7 @@ html, body {
       font-weight: normal;
       text-shadow: none;
       opacity: .7;
-      margin-top: 0;
+      margin-top: 0 !important;
     }
 
     form {
@@ -506,39 +517,96 @@ html, body {
 }
 
 .profile {
+  .dropdown {
+    display: inline-block;
+    float: right;
+
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+
+    .dropdown-menu {
+      border: none;
+      background-color: $light;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+      -moz-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+      box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+
+      a {
+        color: white;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        &:hover {
+          background-color: #525252;
+        }
+
+        i {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+
   .profile-header {
     color: white;
     font-size: 17px;
   }
 
-  .profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: white;
-  }
-
-  .account-info {
-    padding-left: 75px;
-
-    .bottom {
-      margin-top: 10px;
-    }
-
-    button {
-      float: right;
-      margin-top: 17px;
-    }
-  }
-
-  .info {
-    color: white;
-  }
-
-  .info-label {
+  .helper-text {
     color: $lightest;
-    margin-bottom: 0;
-    font-size: 15px;
+    margin-top: -5px;
   }
 
+  .dropdown-toggle {
+    color: $lightest;
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .account-block {
+    margin-top: 10px;
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .account-info {
+      padding-left: 75px;
+
+      .bottom {
+        margin-top: 10px;
+      }
+
+      button {
+        float: right;
+        margin-top: 17px;
+      }
+    }
+
+    .info {
+      color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .info-label {
+      color: $lightest;
+      margin-bottom: 0;
+      font-size: 15px;
+
+      i {
+        color: $accent;
+        padding-left: 5px;
+      }
+    }
+  }
 }

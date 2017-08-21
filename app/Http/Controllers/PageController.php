@@ -22,7 +22,6 @@ class PageController extends Controller
         if (Auth::check()){
             return view('pages.home');
         }
-        // User not logged in
         return view('pages.welcome');
     }
 
@@ -36,6 +35,12 @@ class PageController extends Controller
         }
 
         return view('pages.account.profile', compact('user'));
+    }
+
+    // Login view
+    public function loginShow()
+    {
+        return view('pages.account.login');
     }
 
 }

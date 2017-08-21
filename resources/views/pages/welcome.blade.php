@@ -78,8 +78,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="skills_level">Skills Level<i class="fa fa-question-circle" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="Helps determine the content you receive"></i></label>
-                                        {{ Form::select('skills_level', \App\User::$skills_level, null, ['class' => 'form-control']) }}
+                                        <label for="skill_level">Skill Level<i class="fa fa-question-circle" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="Helps determine the content you receive"></i></label>
+                                        {{ Form::select('skill_level', \App\User::$skill_levels, null, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                             </div>

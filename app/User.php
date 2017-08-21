@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Support\Facades\Auth;
 
 class User extends Model implements Authenticatable
 {
@@ -19,7 +18,7 @@ class User extends Model implements Authenticatable
         'password', 'remember_token',
     ];
 
-    public static $skills_level = [
+    public static $skill_levels = [
         'Beginner' => 'Beginner',
         'Intermediate' => 'Intermediate',
         'Expert' => 'Expert'
@@ -32,50 +31,51 @@ class User extends Model implements Authenticatable
         'email' => 'required|email|min:1|max:100',
         'password' => 'required|min:5|max:100',
     ];
+
     public static $login_rules = [
         'login' => 'required|min:1|max:100',
         'password' => 'required|min:5|max:100',
     ];
 
-    // Retrieves settings for the user
+    // Settings for the user
     public function settings()
     {
         return $this->belongsTo('App\Settings');
     }
 
-    // ---------- Follows ----------
-    // Get all followers of the user
+    // ---------- Following
+    // All accounts following user
     public function followers()
     {
         return $this->belongsToMany('App\User', 'followers', 'follow_id', 'user_id');
     }
 
-    // Get users this user is following
+    // All accounts user is following
     public function following()
     {
         return $this->belongsToMany('App\User', 'followers', 'user_id', 'follow_id');
     }
 
-    // Check is user is following another
+    // Check if following a specific user
     public function isFollowing($id)
     {
         return $this->following->contains($id);
     }
 
-    // Follow $user
+    // Follow user
     public function follow($id)
     {
         $this->following()->attach($id);
     }
 
-    // Un-follow $user
+    // Unfollow user
     public function unfollow($id)
     {
         $this->following()->detach($id);
     }
 
-    // ---------- Rooms ----------
-    // Get all joined groups for user
+    // ---------- Rooms
+    // All joined rooms
     public function rooms()
     {
         return $this->belongsToMany('App\Room', 'joined_rooms', "user_id", "room_id");

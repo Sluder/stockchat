@@ -3,24 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
-    // Login/sign-up view
-    public function loginShow()
-    {
-        return view('pages.account.login');
-    }
-
     // Update users profile information
     public function updateProfile(Request $request)
     {
-        dd($request->all());
+//        User::update([
+//            'name' => $request->get('name'),
+//            'email' => $request->get('email'),
+//            'username' => $request->get('username'),
+//            'username_last_changed' =>  ,
+//        ]);
     }
 
-    // Logged in user follows another user
+    // Checks if a user exists with username or email
+    public function checkAvailability($data)
+    {
+        return response()->json(User::where('username', 'LIKE', '%' . $data . '%')->orWhere('email', $data)->exists());
+    }
+
+    // Auth user follows another user
     public function follow(User $user)
     {
         Auth::user()->follow($user->id);
@@ -28,7 +33,7 @@ class AccountController extends Controller
         return redirect()->route('profile', ['username' => $user->username]);
     }
 
-    // Logged in user unfollows another user
+    // Auth user unfollows another user
     public function unfollow(User $user)
     {
         Auth::user()->unfollow($user->id);

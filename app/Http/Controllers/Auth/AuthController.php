@@ -28,7 +28,7 @@ class AuthController extends Controller
         }
 
         $settings = Settings::create([
-            'skills_level' => $request->get('skills_level')
+            'skill_level' => $request->get('skill_level')
         ]);
 
         User::create([
@@ -63,18 +63,12 @@ class AuthController extends Controller
         return redirect()->back()->withInput()->withErrors("Invalid username or password", 'login_errors');
     }
 
-    // Logout current user
+    // Logout auth user
     public function logout()
     {
         Auth::logout();
 
         return view('pages.account.logout');
-    }
-
-    // Checks if a user exists with username or email
-    public function checkAvailability($data)
-    {
-        return response()->json(User::where('username', 'LIKE', '%' . $data . '%')->orWhere('email', $data)->exists());
     }
 
     // Redirect to Google login
@@ -83,7 +77,7 @@ class AuthController extends Controller
         return $this->socialite()->redirect();
     }
 
-    // Google auth callback
+    // Google auth callback. Creates new user if doesn't exist
     public function googleCallback()
     {
         $googleUser = $this->socialite()->user();
@@ -109,6 +103,7 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
+    // Load 3rd party auth package
     private function socialite()
     {
         return \Socialite::driver('google');
