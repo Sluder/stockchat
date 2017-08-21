@@ -82,6 +82,8 @@ label {
 .card {
   background-color: $light;
   border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 15px;
 }
 
 
@@ -132,7 +134,7 @@ html, body {
     }
   }
 
-  .profile {
+  .user-profile {
     margin-top: 8px;
 
     .profile-name {
@@ -349,7 +351,6 @@ html, body {
 }
 
 .room {
-  padding: 15px 15px 70%;
   margin-bottom: -100%;
   overflow: hidden;
 
@@ -433,4 +434,33 @@ html, body {
       width: 100%;
     }
   }
+}
+
+.profile {
+  .profile-header {
+    color: white;
+    font-size: 17px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+  }
+
+  .account-info {
+    padding-left: 40px;
+  }
+
+  .info {
+    color: white;
+  }
+
+  .info-label {
+    color: $lightest;
+    margin-bottom: 0;
+    font-size: 15px;
+  }
+
 }

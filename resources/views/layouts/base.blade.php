@@ -45,7 +45,7 @@
                                     {{ Form::text('search', null, ['class' => 'form-control search-bar', 'placeholder' => 'Search for stocks, people & rooms']) }}
                             </div>
                         </div>
-                        <div class="col-md-2 profile">
+                        <div class="col-md-2 user-profile">
                             @if (Auth::user())
                                 <p class="profile-name">{{ Auth::user()->username }}</p>
                                 <div class="menu">
