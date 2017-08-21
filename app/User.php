@@ -81,7 +81,7 @@ class User extends Model implements Authenticatable
     public function leaveRoom($room_id)
     {
         if ($this->inRoom($room_id)) {
-            Room::find($room_id)->deccrement('joined_users');
+            Room::find($room_id)->decrement('joined_users');
             $this->rooms()->detach($room_id);
         }
     }

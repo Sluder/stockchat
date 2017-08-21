@@ -1,5 +1,5 @@
 
-// ---------- IMPORTS ----------
+// ---------- Imports ----------
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 @import "variables";
@@ -9,35 +9,21 @@
 @import "bootstrap";
 
 
-// ---------- GLOBAL ----------
+// ---------- Global ----------
 .green {
   color: #10ca10 !important;
 }
+
 .red {
   color: red !important;
 }
+
 .accent {
   color: $accent;
 }
 
-.no-left {
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-.no-padding {
-  padding: 0;
-}
-
-.field-row {
-  padding-top: 20px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+.no-right {
+  padding-right: 0;
 }
 
 .subheader {
@@ -47,27 +33,10 @@
   padding: 0 15px 3px;
 }
 
-.material-icon {
-  width: 30px;
-  height: 30px;
-  font-size: 17px;
-  padding-top: 4px;
-  padding-left: 2px;
-  border-radius: 20px;
-  color: $dark-grey;
-  background-color: $accent;
-  cursor: pointer;
-  -webkit-text-stroke: 2px $accent !important;
-
-  &:hover {
-    background-color: $accent-hover;
-    -webkit-text-stroke: 2px $accent-hover !important;
-  }
-}
-
 label {
   i {
     padding-left: 5px;
+    color: $accent;
 
     &:hover {
       cursor: pointer;
@@ -75,10 +44,9 @@ label {
   }
 }
 
-input[type="text"] {
+.form-control {
   &:focus {
     box-shadow: none;
-    border: none;
   }
 }
 
@@ -111,11 +79,17 @@ input[type="text"] {
   }
 }
 
-// ---------- STYLES ----------
+.card {
+  background-color: $light;
+  border-radius: 5px;
+}
+
+
+// ---------- Layout ----------
 html, body {
   height: 100%;
   min-height: 100%;
-  background-color: $dark-grey;
+  background-color: $dark;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -124,29 +98,36 @@ html, body {
 }
 
 .body {
-  height: 100%;
-  padding-top: 55px;
-  padding-bottom: 60px;
+  margin-top: -57px;
 }
 
-.navbar-fixed-top {
-  height: 55px;
-  background-color: $medium-grey;
+.header {
+  padding-top: 10px;
+  height: 130px;
+  background-color: $medium;
   margin-bottom: 0;
 
-  .side {
-    width: 22%;
+  .nav-icons {
+    margin-top: 33px;
+    text-align: center;
 
-    .navbar-header {
-      padding-top: 10px;
+    a {
+      width: 40px;
+      height: 40px;
       color: white;
-    }
+      background-color: $light;
+      display: inline-block;
+      border-radius: 20px;
+      text-align: center;
 
-    .buttons {
-      margin-top: 10px;
+      &:hover {
+        background-color: #525252;
+      }
 
-      .join {
-        padding: 5px 15px;
+      i {
+        font-size: 17px;
+        line-height: 40px;
+        vertical-align: middle;
       }
     }
   }
@@ -160,320 +141,133 @@ html, body {
       margin-right: 8px;
     }
 
-    .dropdown {
-      position: relative;
+    .menu {
       display: inline-block;
-      cursor: pointer;
+
+      &:hover {
+        .dropdown-menu {
+          display: block;
+        }
+      }
 
       .profile-img {
         border-radius: 50%;
         width: 40px;
-        background-color: $accent;
+        background-color: white;
       }
 
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        color: white;
-        background-color: $medium-grey;
-        min-width: 150px;
+      .dropdown-menu {
+        border: none;
+        background-color: $light;
         border-radius: 5px;
-        z-index: 1;
+        -webkit-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+        -moz-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+        box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
 
         a {
-          color: inherit;
-          text-decoration: none;
+          color: white;
+          padding-top: 5px;
+          padding-bottom: 5px;
 
           &:hover {
-            color: $accent;
+            background-color: #525252;
           }
 
-          .item {
-            padding: 8px 0 8px 10px;
-          }
-
-          .bottom {
-            border-bottom: 1px solid $grey;
+          i {
+            padding-right: 10px;
           }
         }
       }
-
-      &:hover .dropdown-content {
-        display: block;
-      }
-    }
-  }
-
-  .navbar-nav {
-    i {
-      font-size: 20px;
-      padding-right: 7px;
     }
   }
 
   .search-bar {
     margin-top: 10px;
     color: white;
-    background-color: $dark-grey;
-    border: 0 solid $dark-grey;
+    background-color: $dark;
+    border: 0 solid $dark;
     border-radius: 5px;
   }
-
-  li {
-    &:hover, &:focus {
-      border-bottom: 3px solid $accent;
-      background-color: transparent;
-      height: 50px;
-      -webkit-transition: .2s;
-      transition: .2s;
-    }
-
-    > a {
-      color: white;
-      height: 55px;
-      padding-top: 17px;
-
-      &:hover, &:focus {
-        background-color: transparent;
-      }
-    }
-  }
 }
 
-.full-height {
-  padding-bottom: 100%;
-  margin-bottom: -100%;
-  overflow: hidden;
-}
 
-// ---------- LEFT SIDEBAR ----------
+// ---------- Sidebars ----------
 .left-sidebar {
-  background-color: $medium-grey;
-  width: 22%;
+  margin-top: 65px;
 
-  .watchlist, .rooms {
+  .side-header {
+    color: $lightest;
     text-align: center;
+    font-size: 17px;
+    border-bottom: 1px dotted $light;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    margin-top: 7px;
+  }
 
-    .subheader {
-      margin-top: 20px;
-    }
+  .item-wrapper {
+    border-bottom: 1px dotted $light;
+    overflow: auto;
+    padding-bottom: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 
-    .side-header {
-      margin-left: 5px;
-      margin-right: 5px;
-      border-bottom: 1px solid #757575;
-
-      .material-icon {
-        margin-top: 12px;
-        margin-left: 19px;
-      }
-    }
-
-    .watch-header,.room-header {
-      float: left;
-    }
-
+  .watchlist {
     .watch-item {
-      height: 50px;
-      margin: 0 5px 5px;
-      padding-top: 5px;
-      border-bottom: 1px solid $grey;
-      padding-left: 15px;
-      padding-right: 15px;
+      margin-top: 4px;
+      padding-left: 10px;
+      padding-right: 10px;
 
-      .ticker {
+      .symbol {
         color: white;
-        text-align: left;
-        font-size: 14px;
       }
 
-      .price-holder {
-        .current-price {
-          color: white;
-          text-align: center;
-          font-size: 14px;
-          margin-top: 8px;
-        }
-      }
-
-      .percent-change {
-        color: white;
-        text-align: right;
-        font-size: 14px;
-        margin-top: 8px;
-      }
-
-      .company-name {
-        text-align: left;
-        font-size: 13px;
-        color: $light-grey;
+      .company {
+        color: $lightest;
+        overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-right: 0;
       }
-    }
 
-    .room-item {
-      border-bottom: 1px solid $grey;
-      height: 44px;
-      margin: 0 5px 5px;
-      padding-top: 3px;
-
-      .room-name {
+      .current-price {
         text-align: left;
         color: white;
-        padding-top: 10px;
-        font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .empty {
-        text-align: center;
-        color: $light-grey;
-        padding-top: 10px;
-        font-size: 14px;
+        vertical-align: middle;
+        line-height: 40px;
       }
     }
   }
 
   .rooms {
-    margin-top: 25px;
-  }
-}
+    margin-top: 30px;
 
-// ---------- RIGHT SIDEBAR ----------
-.right-sidebar {
-  width: 22%;
-  background-color: $dark-grey;
-}
+    .room-item {
+      margin-top: 4px;
+      padding-left: 10px;
+      padding-right: 10px;
 
-// ---------- CENTER CONTENT ----------
-.center-content {
-  width: 56%;
-}
+      .item-wrapper {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
 
-.home-center {
-  background-color: $dark-grey;
-}
-
-.room {
-  background-color: $dark-grey;
-}
-
-.new-room {
-  padding-left: 30px;
-  padding-right: 30px;
-  background-color: $dark-grey;
-
-  .subheader {
-    color: $accent;
-    margin-top: 20px;
-    padding-bottom: 0;
-  }
-
-  .helper-text {
-    margin-left: 15px;
-    color: $light-grey;
-    font-size: 14px;
-  }
-
-  .join {
-    margin-top: 15px;
-    background-color: $medium-grey;
-    padding: 15px 15px 30px;
-
-    .suggested-rooms {
-      .suggested-header {
+      .room-name {
         color: white;
+        padding-left: 0;
       }
-
-      .suggested-room-item {
-        .room-img {
-          width: 30px;
-          height: 30px;
-          position: relative;
-          overflow: hidden;
-          border-radius: 50%;
-
-          img {
-            display: inline;
-            margin: 0 auto;
-            height: 100%;
-            width: auto;
-          }
-        }
-
-        .room-name {
-          color: $light-grey;
-          padding-top: 5px;
-        }
-      }
-    }
-
-    .flash-message-mini {
-      margin-right: 15px;
-      margin-top: -20px;
-
-      .alert-danger {
-        background-color: transparent;
-        border: none;
-        color: red;
-      }
-    }
-
-    .btn {
-      float: right;
-      padding-left: 25px;
-      padding-right: 25px;
-      margin-top: 20px;
-    }
-  }
-
-  .create {
-    margin-top: 15px;
-    background-color: $medium-grey;
-    padding: 15px 15px 30px;
-
-    .btn {
-      float: right;
-      padding-left: 17px;
-      padding-right: 17px;
-      margin-top: 20px;
-    }
-
-    .error {
-      padding-left: 2px;
-      color: red;
-    }
-  }
-
-  form {
-    margin-top: 10px;
-
-    label {
-      color: white;
-      font-weight: normal;
-
-      span {
-        padding-left: 5px;
-      }
-    }
-    
-    input {
-      color: white;
-      background-color: $dark-grey;
-      border: 0;
-      border-radius: 5px;
-
-      &:focus {
-        box-shadow: none;
+      
+      .empty {
+        color: $lightest;
+        text-align: center;
       }
     }
   }
 }
 
+
+// ---------- Pages ----------
 .welcome {
   .welcome-header {
     color: white;
@@ -485,7 +279,7 @@ html, body {
   .helper-text {
     text-align: center;
     font-size: 25px;
-    color: $light-grey;
+    color: $light;
     margin-top: -15px;
   }
 
@@ -506,9 +300,9 @@ html, body {
   }
 
   .join-panel, .login-panel {
-    background-color: $medium-grey;
+    background-color: $light;
     margin-top: 20px;
-    border-radius: 5px;
+    border-radius: 2px;
 
     form {
       padding: 25px;
@@ -517,7 +311,7 @@ html, body {
         display: none;
       }
 
-      .header {
+      .panel-header {
         color: white;
         font-size: 20px;
         text-align: left;
@@ -533,7 +327,7 @@ html, body {
 
         input, select {
           color: white;
-          background-color: $dark-grey;
+          background-color: $dark;
           border: 0;
           border-radius: 5px;
 
@@ -546,6 +340,97 @@ html, body {
       .btn {
         float: right;
       }
+    }
+  }
+}
+
+.home {
+  height: 300px; //TEMP
+}
+
+.room {
+  padding: 15px 15px 70%;
+  margin-bottom: -100%;
+  overflow: hidden;
+
+  .room-header {
+    padding-bottom: 10px;
+
+    .room-name {
+      color: white;
+      font-size: 17px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .joined-users {
+      color: $lightest;
+      text-align: right;
+      margin-top: -5px;
+    }
+
+    .room-message {
+      margin: -5px 0 0;
+      color: $lightest;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .room-settings {
+      color: $lightest;
+      font-size: 17px;
+      margin-top: -5px;
+    }
+
+    .menu {
+      display: inline-block;
+      float: right;
+
+      &:hover {
+        .dropdown-menu {
+          display: block;
+        }
+      }
+
+      .dropdown-menu {
+        border: none;
+        background-color: $light;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+        -moz-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+        box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+
+        a {
+          color: white;
+          padding-top: 5px;
+          padding-bottom: 5px;
+
+          &:hover {
+            background-color: #525252;
+          }
+
+          i {
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .room-messaging {
+    .message-input {
+      input {
+        color: white;
+        background-color: $dark;
+        border: 0 solid $dark;
+        border-radius: 5px;
+      }
+    }
+
+    .send {
+      width: 100%;
     }
   }
 }

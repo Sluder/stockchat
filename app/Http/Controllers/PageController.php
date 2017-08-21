@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
@@ -23,6 +24,18 @@ class PageController extends Controller
         }
         // User not logged in
         return view('pages.welcome');
+    }
+
+    // Shows user profile
+    public function profile($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        if (!$user) {
+            $user = Auth::user();
+        }
+
+        return view('pages.account.profile', compact('user'));
     }
 
 }

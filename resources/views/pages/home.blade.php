@@ -1,21 +1,17 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                {{-- col-md-3 --}}
-                @include('components.left-sidebar')
+    <div class="container-fluid">
+        <div class="row">
+            @include('components.left-sidebar')
 
-                <div class="col-md-6 full-height center-content home-center">
-                    <div class="row header">Watchlist Charts</div>
+            <div class="col-md-8">
+                <div class="home card">
 
-                    @include('components.chart-widget', ['ticker' => "PLUG"])
                 </div>
-
-                {{-- col-md-3 --}}
-                @include('components.right-sidebar')
             </div>
+
+            @include('components.right-sidebar')
         </div>
     </div>
 @endsection

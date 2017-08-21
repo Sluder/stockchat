@@ -52,9 +52,9 @@ class RoomController extends Controller
         return redirect()->route('room', ['key' => $room->key]);
     }
 
-    public function leave(Room $room)
+    public function leave($room_id)
     {
-        Auth::user()->leaveRoom($room->id);
+        Auth::user()->leaveRoom($room_id);
 
         return redirect()->route('home');
     }
@@ -68,7 +68,7 @@ class RoomController extends Controller
         }
 
         // Generate new room key
-        $key = substr(uniqid(), 6);
+        $key = substr(uniqid(), 6); //todo: first character to be a number
         while (Room::where('key', $key)->first() !== null) {
             $key = substr(uniqid(), 6);
         }

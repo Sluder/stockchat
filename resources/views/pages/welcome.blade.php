@@ -3,7 +3,7 @@
 @section('styles')
     <style type="text/css">
         body {
-            background: url("/images/chart-background.png");
+            background: url("/images/chart-background-grey.png");
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -34,7 +34,7 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="header">Join {{ env("SITE_NAME") }}</p>
+                                    <p class="panel-header">Join {{ env("SITE_NAME") }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <label for="password">
                                             Password
-                                            <i class="fa fa-question-circle accent" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="More than 5 characters"></i>
+                                            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="More than 5 characters"></i>
                                         </label>
                                         {{ Form::password('password', ['class' => 'form-control', 'required' => 'required', 'autocomplete' => 'off', 'minlength' => 5, 'maxlength' => 100]) }}
                                     </div>
@@ -83,7 +83,7 @@
                                     <div class="form-group">
                                         <label for="skills_level">
                                             Skills Level
-                                            <i class="fa fa-question-circle accent" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="Helps determine the content you receive"></i>
+                                            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="popup" data-trigger="hover" data-content="Helps determine the content you receive"></i>
                                         </label>
                                         {{ Form::select('skills_level', \App\User::$skills_level, null, ['class' => 'form-control']) }}
                                     </div>
@@ -115,7 +115,7 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="header">Login to {{ env("SITE_NAME") }}</p>
+                                    <p class="panel-header">Login to {{ env("SITE_NAME") }}</p>
                                 </div>
                             </div>
                             <div class="row">

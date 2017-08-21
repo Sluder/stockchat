@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                <p style="color: white">You have been logged out</p>
+                <p style="color: white; margin-top: 84px;">You have been logged out</p>
 
             </div>
         </div>

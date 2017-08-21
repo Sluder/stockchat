@@ -12,11 +12,13 @@ Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/login/google', 'Auth\AuthController@redirectToGoogle')->name('google.login');
 Route::get('/login/callback', 'Auth\AuthController@googleCallback');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
+Route::get('/profile/{username}', 'PageController@profile')->name('profile');
 Route::get('/check/{data}', 'Auth\AuthController@checkAvailability');
 
 
 // ----- Groups
 Route::get("/room", "RoomController@roomShow")->name("room.view");
+Route::get("/leave/{room_id}", "RoomController@leave")->name("room.leave");
 Route::post("/create", "RoomController@create")->name("room.create");
 Route::match(['GET', 'POST'], "/join/{key?}", "RoomController@join")->name("room.join");
 Route::get("/{key}", "RoomController@room")->name("room"); // Needs to be last
