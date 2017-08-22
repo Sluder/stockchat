@@ -25,9 +25,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    @include('components.flash-message-mini')
-                                </div>
-                                <div class="row">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn custom-btn">Join</button>
                                     </div>

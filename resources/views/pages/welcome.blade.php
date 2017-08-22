@@ -150,13 +150,16 @@
 
 @section('scripts')
     <script type="text/javascript">
-        window.onload = function() {
-            $('.join-btn').click(function() {
+        window.onload = function()
+        {
+            $('.join-btn').click(function()
+            {
                if ($('.login-panel').attr('aria-expanded', 'true')) {
                    $('.login-panel').attr('aria-expanded', 'false').removeClass('in');
                }
             });
-            $('.login-btn').click(function() {
+            $('.login-btn').click(function()
+            {
                 if ($('.join-panel').attr('aria-expanded', 'true')) {
                     $('.join-panel').attr('aria-expanded', 'false').removeClass('in');
                 }

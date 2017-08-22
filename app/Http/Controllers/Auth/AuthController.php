@@ -86,7 +86,7 @@ class AuthController extends Controller
         // Create new user from Google if doesn't exist
         if ($user === NULL) {
             $settings = Settings::create([
-                'skills_level' => "Beginner"
+                'skill_level' => "Beginner"
             ]);
 
             $user = User::create([

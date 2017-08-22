@@ -50,7 +50,7 @@ label {
   }
 }
 
-input[readonly] {
+input[disabled] {
   color: $light !important;
 }
 
@@ -86,15 +86,11 @@ button {
   }
 }
 
-.flash-message {
-  .alert-danger {
-    background-color: #c63332;
-    border-color: #c63332;
-    color: white;
-  }
+.required {
+  padding-left: 5px;
 }
 
-#username-error, #email-error {
+#username-error, #email-error, #password-error {
   display: none;
 }
 
@@ -596,6 +592,7 @@ html, body {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      padding-left: 23px;
     }
 
     .info-label {
@@ -605,8 +602,43 @@ html, body {
 
       i {
         color: $accent;
-        padding-left: 5px;
+        padding-right: 5px;
       }
+    }
+  }
+
+  .password {
+    .form-group {
+      text-align: left;
+
+      label {
+        color: white;
+        font-weight: normal;
+      }
+
+      input, select {
+        color: white;
+        background-color: $dark;
+        border: 0;
+        border-radius: 5px;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .btn {
+      float: right;
+    }
+  }
+
+  .following {
+    .load-more {
+      color: $accent;
+      text-align: center;
+      font-size: 15px;
+      cursor: pointer;
     }
   }
 }

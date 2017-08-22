@@ -37,6 +37,18 @@ class User extends Model implements Authenticatable
         'password' => 'required|min:5|max:100',
     ];
 
+    public static $update_rules = [
+        'name' => 'required|min:1|max:50',
+        'username' => 'min:1|max:20',
+        'email' => 'required|email|min:1|max:100',
+        'skill_level' => 'required',
+    ];
+
+    public static $password_rules = [
+        'password' => 'required|min:5|max:100',
+        'password_repeat' => 'required|min:5|max:100',
+    ];
+
     // Settings for the user
     public function settings()
     {

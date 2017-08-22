@@ -79,35 +79,39 @@
 
         <script type="text/javascript" src="https://d33t3vvu2t2yu5.cloudfront.net/tv.js"></script>
 
-        <script type="text/javascript">
-            // Checks if username or email is already used
-            function checkInfo(field) {
-                var field_val = $('#' + field).val();
-                var username = {!! json_encode(Auth::user()->username) !!};
+        @if (Auth::check())
+            <script type="text/javascript">
+                // Checks if username or email is already used
+                function checkInfo(field)
+                {
+                    var field_val = $('#' + field).val();
+                    var username = {!! json_encode(Auth::user()->username) !!};
 
-                if (field_val !== username) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/check/" + field_val,
-                        success:function(used) {
-                            if (used) {
-                                if (field === "username") {
-                                    document.getElementById('username-error').style.display = 'inline-block';
-                                } else if (field === "email") {
-                                    document.getElementById('email-error').style.display = 'inline-block';
-                                }
-                            } else {
-                                if (field === "username") {
-                                    document.getElementById('username-error').style.display = 'none';
-                                } else if (field === "email") {
-                                    document.getElementById('email-error').style.display = 'none';
+                    if (field_val !== username) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/check/" + field_val,
+                            success:function(used)
+                            {
+                                if (used) {
+                                    if (field === "username") {
+                                        document.getElementById('username-error').style.display = 'inline-block';
+                                    } else if (field === "email") {
+                                        document.getElementById('email-error').style.display = 'inline-block';
+                                    }
+                                } else {
+                                    if (field === "username") {
+                                        document.getElementById('username-error').style.display = 'none';
+                                    } else if (field === "email") {
+                                        document.getElementById('email-error').style.display = 'none';
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        </script>
+            </script>
+        @endif
 
         @yield('scripts')
     </body>
