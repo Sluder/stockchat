@@ -634,6 +634,25 @@ html, body {
   }
 
   .following {
+    .following-template {
+      padding-top: 15px;
+
+      .profile-img {
+        border-radius: 50%;
+        width: 50px;
+        background-color: white;
+      }
+
+      .username {
+        color: $lightest;
+        display: inline-block;
+        padding-left: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
     .load-more {
       color: $accent;
       text-align: center;

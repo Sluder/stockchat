@@ -45,6 +45,7 @@ class User extends Model implements Authenticatable
     ];
 
     public static $password_rules = [
+        'password_old' => 'required|min:5|max:100',
         'password' => 'required|min:5|max:100',
         'password_repeat' => 'required|min:5|max:100',
     ];

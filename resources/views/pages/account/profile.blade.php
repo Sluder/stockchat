@@ -103,26 +103,25 @@
                                 </div>
                             </div>
                         </div>
-                        @if ($owner)
+                        @if ($owner && Auth::user()->password !== NULL)
                             <div class="password card">
                                 <p class="profile-header">Password Change</p>
-                                @if (Session::has('password-message'))
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="green">{{ Session::get('password-message') }}</p>
-                                        </div>
-                                    </div>
-                                @endif
                                 <form action="{{ route('password.update') }}" method="POST">
                                     {{ csrf_field() }}
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="password_old">Old Password <span class="accent required">*</span></label>
+                                                {{ Form::password('password_old', ['class' => 'form-control', 'minlength' => 5, 'required', 'autocomplete' => 'off']) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="password">Password <span class="accent required">*</span></label>
                                                 {{ Form::password('password', ['id' => 'password', 'class' => 'form-control', 'minlength' => 5, 'required', 'autocomplete' => 'off', 'onchange' => 'comparePasswords()']) }}
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="password_repeat">Repeat Password <span class="accent required">*</span></label>
                                                 {{ Form::password('password_repeat', ['id' => 'password_repeat', 'class' => 'form-control', 'minlength' => 5, 'required', 'autocomplete' => 'off', 'onchange' => 'comparePasswords()']) }}
@@ -130,7 +129,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4 col-md-offset-4">
                                             <p id="password-error" class="red">Passwords do not match.</p>
                                         </div>
                                     </div>
@@ -140,6 +139,19 @@
                                                 @foreach ($errors->password_errors->all() as $error)
                                                     <p class="red">{{ $error }}</p>
                                                 @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if (Session::has('password_message'))
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="green">{{ Session::get('password_message') }}</p>
+                                            </div>
+                                        </div>
+                                    @elseif (Session::has('password_error'))
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="red">{{ Session::get('password_error') }}</p>
                                             </div>
                                         </div>
                                     @endif
@@ -154,9 +166,10 @@
                         <div class="following card">
                             <p class="profile-header">Following</p>
                             <div class="row" id="following-list">
-                                <template id="following-template">
-                                    <div class="name"></div>
-                                </template>
+                                <div id="following-template" class="col-md-4 following-template" style="display: none;">
+                                    <img class="profile-img" src="">
+                                    <p class="username"></p>
+                                </div>
                             </div>
                             <div class="load-more" onclick="loadMore()" id="load-more">Load more</div>
                         </div>
@@ -172,6 +185,12 @@
 
 @section('scripts')
     <script type="text/javascript">
+        var pageNumber = 1;
+        var followingList = document.getElementById('following-list');
+        var clone;
+
+        loadMore();
+
         // Checks change password fields for similarity
         function comparePasswords()
         {
@@ -187,8 +206,7 @@
             }
         }
 
-        // Loads more 'following' accounts and creates new list item
-        var pageNumber = 1;
+        // Loads more 'following' accounts and creates new list items
         function loadMore()
         {
             $.ajax({
@@ -196,20 +214,23 @@
                 url: "/following/" + pageNumber,
                 success: function(response) {
                     pageNumber += 1;
-                    if (response['data'].length == 0){
+
+                    console.log(response);
+
+                    if (response['data'].length === 0){
                         document.getElementById('load-more').style.display = 'none';
 
                     } else {
-                        var followingList = document.getElementById('following-list');
-
                         for (var i = 0; i < response['data'].length; i++) {
-                            var template = document.getElementById('following-template').content.cloneNode(true);
+                            clone = document.getElementById('following-template').cloneNode(true);
+                            clone.querySelector('.profile-img').src = response['data'][i]['profile_img'];
+                            clone.querySelector('.username').innerHTML = response['data'][i]['username'];
+                            clone.style.display = 'block';
 
-                            template.querySelector('.name').innerText = response['data'][i]['name'];
-                            followingList.appendChild(template);
+                            followingList.appendChild(clone);
                         }
                     }
-                    if ((pageNumber - 1) == response['last_page']) {
+                    if ((pageNumber - 1) === response['last_page']) {
                         document.getElementById('load-more').style.display = 'none';
                     }
                 }

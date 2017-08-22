@@ -39,7 +39,7 @@ class AccountController extends Controller
             'skill_level' => $request->get('skill_level')
         ]);
 
-        return redirect()->route('profile', ['username' => Auth::user()->username])->with('account-message', 'Your profile was successfully updated!');;
+        return redirect()->route('profile', ['username' => Auth::user()->username])->with('account-message', 'Your profile was successfully updated!');
     }
 
     // Update user password
@@ -50,14 +50,16 @@ class AccountController extends Controller
             return redirect()->back()->withInput()->withErrors($validation->messages(), 'password_errors');
         }
 
+        if (!Hash::check($request->get('password_old'), Auth::user()->password)) {
+            return redirect()->back()->withInput()->with('password_error', 'Old password is incorrect.');
+        }
+
         Auth::user()->update([
             'id' => Auth::id(),
             'password' =>  Hash::make($request->get('password'))
         ]);
 
-        $request->session()->flash('alert-success', 'Password successfully updated!');
-
-        return redirect()->route('profile', ['username' => Auth::user()->username])->with('password-message', 'Password was successfully updated!');
+        return redirect()->route('profile', ['username' => Auth::user()->username])->with('password_message', 'Password was successfully updated!');
     }
 
     // (AJAX) Checks if a user exists with username or email

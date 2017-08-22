@@ -15,9 +15,9 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("reporter_id")->unsigned();
-            $table->integer("user_id")->unsigned();
-            $table->string("reason");
+            $table->integer("reporter_id")->unsigned();     // User who is reporting
+            $table->integer("user_id")->unsigned();         // User in the fault
+            $table->string("reason");                       // Reason reporter is reporting
             $table->timestamps();
         });
 
