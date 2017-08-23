@@ -19,7 +19,7 @@
 }
 
 .accent {
-  color: $accent;
+  color: $accent !important;
 }
 
 .no-right {
@@ -636,20 +636,27 @@ html, body {
   .following {
     .following-template {
       padding-top: 15px;
+      padding-bottom: 20px;
 
       .profile-img {
         border-radius: 50%;
         width: 50px;
         background-color: white;
+        margin-top: -15px;
       }
 
-      .username {
+      .username, .follower_count {
         color: $lightest;
         display: inline-block;
         padding-left: 15px;
+        margin-top: -15px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+
+      .username {
+        color: white;
       }
     }
 
@@ -659,5 +666,10 @@ html, body {
       font-size: 15px;
       cursor: pointer;
     }
+  }
+
+  .following-empty {
+    color: $lightest;
+    text-align: center;
   }
 }

@@ -83,7 +83,7 @@ class AuthController extends Controller
         $googleUser = $this->socialite()->user();
         $user = User::where('email', $googleUser->email)->first();
 
-        // Create new user from Google if doesn't exist
+        // Create new user from Google auth if doesn't exist
         if ($user === NULL) {
             $settings = Settings::create([
                 'skill_level' => "Beginner"

@@ -39,7 +39,7 @@ class AccountController extends Controller
             'skill_level' => $request->get('skill_level')
         ]);
 
-        return redirect()->route('profile', ['username' => Auth::user()->username])->with('account-message', 'Your profile was successfully updated!');
+        return redirect()->route('profile', ['username' => Auth::user()->username])->with('account-message', 'Your profile was successfully updated.');
     }
 
     // Update user password
@@ -59,7 +59,7 @@ class AccountController extends Controller
             'password' =>  Hash::make($request->get('password'))
         ]);
 
-        return redirect()->route('profile', ['username' => Auth::user()->username])->with('password_message', 'Password was successfully updated!');
+        return redirect()->route('profile', ['username' => Auth::user()->username])->with('password_message', 'Your password was successfully updated.');
     }
 
     // (AJAX) Checks if a user exists with username or email
@@ -87,7 +87,12 @@ class AccountController extends Controller
     // (AJAX) Get $page num paginated list of accounts user is following
     public function getFollowing($page)
     {
-        return Auth::user()->following()->paginate(3, ['*'], 'page', $page);
+        $following = Auth::user()->following()->paginate(12, ['*'], 'page', $page);
+
+        foreach ($following as $follower) {
+            $follower->follower_count = count($follower->followers);
+        }
+        return $following;
     }
 
 }

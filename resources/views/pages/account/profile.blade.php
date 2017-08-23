@@ -56,11 +56,11 @@
                                             <p class="info-label"><i class="fa fa-user-o" aria-hidden="true"></i> Name</p>
                                             <p class="info">{{ $user->name }}</p>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <p class="info-label"><i class="fa fa-bar-chart" aria-hidden="true"></i>Skill Level</p>
                                             <p class="info">{{ $user->settings->skill_level }}</p>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <p class="info-label"><i class="fa fa-users" aria-hidden="true"></i> Followers</p>
                                             <p class="info">{{ number_format(count($user->followers)) }}</p>
                                         </div>
@@ -71,12 +71,12 @@
                                             <p class="info">{{ $user->username }}</p>
                                         </div>
                                         @if ($owner)
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <p class="info-label"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</p>
                                                 <p class="info">{{ $user->email }}</p>
                                             </div>
                                         @endif
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <p class="info-label"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Date Joined</p>
                                             <p class="info">{{ $user->created_at->toFormattedDateString() }}</p>
                                         </div>
@@ -167,11 +167,23 @@
                             <p class="profile-header">Following</p>
                             <div class="row" id="following-list">
                                 <div id="following-template" class="col-md-4 following-template" style="display: none;">
-                                    <img class="profile-img" src="">
-                                    <p class="username"></p>
+                                    <div class="col-md-3">
+                                        <img class="profile-img" src="">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <p class="username"></p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="follower_count"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="load-more" onclick="loadMore()" id="load-more">Load more</div>
+                            <div id="empty">
+                                <p class="following-empty">You have not followed any users.</p>
+                            </div>
+                            <div class="load-more" onclick="loadMore()" id="load-more" style="display: none;">Load more</div>
                         </div>
                     </div>
                 </div>
@@ -214,24 +226,30 @@
                 url: "/following/" + pageNumber,
                 success: function(response) {
                     pageNumber += 1;
-
-                    console.log(response);
-
                     if (response['data'].length === 0){
                         document.getElementById('load-more').style.display = 'none';
 
                     } else {
-                        for (var i = 0; i < response['data'].length; i++) {
-                            clone = document.getElementById('following-template').cloneNode(true);
-                            clone.querySelector('.profile-img').src = response['data'][i]['profile_img'];
-                            clone.querySelector('.username').innerHTML = response['data'][i]['username'];
-                            clone.style.display = 'block';
+                        if (response['last_page'] !== 0) {
+                            document.getElementById('empty').style.display = 'none';
 
-                            followingList.appendChild(clone);
+                            for (var i = 0; i < response['data'].length; i++) {
+                                clone = document.getElementById('following-template').cloneNode(true);
+                                clone.querySelector('.profile-img').src = response['data'][i]['profile_img'];
+                                clone.querySelector('.username').innerHTML = response['data'][i]['username'];
+                                clone.querySelector('.follower_count').innerHTML = response['data'][i]['follower_count'] + " followers";
+                                clone.style.display = 'block';
+
+                                followingList.appendChild(clone);
+                            }
+                        } else {
+                            document.getElementById('empty').style.display = 'block';
                         }
                     }
-                    if ((pageNumber - 1) === response['last_page']) {
+                    if ((pageNumber - 1) === response['last_page'] || response['last_page'] === 0) {
                         document.getElementById('load-more').style.display = 'none';
+                    } else {
+                        document.getElementById('load-more').style.display = 'block';
                     }
                 }
             });
