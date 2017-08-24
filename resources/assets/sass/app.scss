@@ -174,7 +174,6 @@ html, body {
       &:hover {
         .dropdown-menu {
           display: block;
-          margin-left: -35px;
         }
       }
 
@@ -189,6 +188,7 @@ html, body {
         border: none;
         background-color: $light;
         border-radius: 5px;
+        margin-left: -35px;
         -webkit-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
         -moz-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
         box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
@@ -311,8 +311,14 @@ html, body {
       color: $lightest;
       font-weight: normal;
       text-shadow: none;
-      opacity: .7;
-      margin-top: 0 !important;
+      font-size: 15px;
+      margin-top: 9px !important;
+      margin-right: -6px;
+      opacity: 1 !important;
+    }
+
+    .unfollow-close {
+      margin-right: 0;
     }
 
     form {
@@ -341,10 +347,6 @@ html, body {
 
     .custom-btn {
       float: right;
-    }
-
-    .follow-btn {
-      margin-top: 20px;
     }
   }
 }
@@ -569,10 +571,11 @@ html, body {
     margin-top: 10px;
 
     .profile-img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       background-color: white;
+      margin-left: 30px;
     }
 
     .account-info {

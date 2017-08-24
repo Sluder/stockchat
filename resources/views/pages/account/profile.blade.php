@@ -47,10 +47,10 @@
                                 @endif
                             </div>
                             <div class="row account-block">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <img class="profile-img" src="{{ $user->profile_img }}" alt="{{ $user->name }}"/>
                                 </div>
-                                <div class="col-md-11 account-info">
+                                <div class="col-md-10 account-info">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <p class="info-label"><i class="fa fa-user-o" aria-hidden="true"></i> Name</p>

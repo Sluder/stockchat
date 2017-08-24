@@ -92,7 +92,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
-                'profile_img' => substr($googleUser->avatar, 0, -2) . "100",
+                'profile_img' => substr($googleUser->avatar, 0, -2) . "150",
                 'username' => $googleUser->name,
                 'username_last_changed' => date("Y-m-d H:i:s"),
                 'settings_id' => $settings->id,
