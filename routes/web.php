@@ -17,10 +17,12 @@ Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
 Route::get('/profile/{username}', 'PageController@profile')->name('profile');
 Route::post('/profile/update', 'AccountController@updateProfile')->name('profile.update');
 Route::post('/password/update', 'AccountController@updatePassword')->name('password.update');
-Route::get('/following/{page}', 'AccountController@getFollowing');
 
+Route::get('/following/{page}/{user_id}', 'AccountController@getFollowing');
 Route::get('/follow/{user}', 'AccountController@follow')->name('follow');
 Route::get('/unfollow/{user}', 'AccountController@unfollow')->name('unfollow');
+
+Route::post('/report', 'ReportController@report')->name('report');
 
 
 // ---------- Groups

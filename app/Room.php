@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
  */
 class Room extends Model
 {
-    protected $table = 'rooms';
     public $timestamps = true;
+    protected $table = 'rooms';
     protected $guarded = [];
 
     // Request validation rules

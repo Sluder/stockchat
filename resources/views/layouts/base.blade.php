@@ -48,7 +48,7 @@
                         <div class="col-md-2 user-profile">
                             @if (Auth::check())
                                 <p class="profile-name">{{ Auth::user()->username }}</p>
-                                <div class="menu">
+                                <div class="dropdown">
                                     <img class="profile-img" src="{{ Auth::user()->profile_img }}" alt="{{ Auth::user()->name }}" data-toggle="dropdown" aria-expanded="true">
                                     <ul class="dropdown-menu">
                                         <li>

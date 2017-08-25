@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
+// Account managing and helper functions
 class AccountController extends Controller
 {
     // Update users profile information
@@ -62,12 +63,6 @@ class AccountController extends Controller
         return redirect()->route('profile', ['username' => Auth::user()->username])->with('password_message', 'Your password was successfully updated.');
     }
 
-    // (AJAX) Checks if a user exists with username or email
-    public function checkAvailability($data)
-    {
-        return response()->json(User::where('username', 'LIKE', '%' . $data . '%')->orWhere('email', $data)->exists());
-    }
-
     // Auth user follows another user
     public function follow(User $user)
     {
@@ -76,7 +71,7 @@ class AccountController extends Controller
         return redirect()->route('profile', ['username' => $user->username]);
     }
 
-    // Auth user unfollows another user
+    // Auth user un-follows another user
     public function unfollow(User $user)
     {
         Auth::user()->unfollow($user->id);
@@ -84,10 +79,16 @@ class AccountController extends Controller
         return redirect()->route('profile', ['username' => $user->username]);
     }
 
-    // (AJAX) Get $page num paginated list of accounts user is following
-    public function getFollowing($page)
+    // AJAX : Checks if a user exists with username or email
+    public function checkAvailability($data)
     {
-        $following = Auth::user()->following()->paginate(12, ['*'], 'page', $page);
+        return response()->json(User::where('username', 'LIKE', '%' . $data . '%')->orWhere('email', $data)->exists());
+    }
+
+    // AJAX : Get $page num paginated list of accounts user is following
+    public function getFollowing($page, $user_id)
+    {
+        $following = User::find($user_id)->following()->paginate(12, ['*'], 'page', $page);
 
         foreach ($following as $follower) {
             $follower->follower_count = count($follower->followers);

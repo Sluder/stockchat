@@ -168,7 +168,7 @@ html, body {
       margin-right: 8px;
     }
 
-    .menu {
+    .dropdown {
       display: inline-block;
 
       &:hover {
@@ -188,7 +188,7 @@ html, body {
         border: none;
         background-color: $light;
         border-radius: 5px;
-        margin-left: -35px;
+        margin-left: -118px;
         -webkit-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
         -moz-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
         box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
@@ -297,7 +297,7 @@ html, body {
 
 
 // ---------- Modals ----------
-.update-account-modal, .follow-account-modal, .unfollow-account-modal {
+.update-account-modal, .follow-account-modal, .unfollow-account-modal, .report-user-modal {
   .modal-content {
     background-color: $light;
     padding: 12px;
@@ -315,6 +315,10 @@ html, body {
       margin-top: 9px !important;
       margin-right: -6px;
       opacity: 1 !important;
+
+      &:hover {
+        color: #B9B9B8;
+      }
     }
 
     .unfollow-close {
@@ -347,6 +351,14 @@ html, body {
 
     .custom-btn {
       float: right;
+    }
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      color: white;
     }
   }
 }
@@ -533,6 +545,7 @@ html, body {
       -webkit-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
       -moz-box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
       box-shadow: 0 0 16px 0 rgba(0,0,0,0.25);
+      margin-left: -145px;
 
       a {
         color: white;
@@ -592,7 +605,7 @@ html, body {
     }
 
     .info {
-      color: white;
+      color: $lightest;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -600,7 +613,7 @@ html, body {
     }
 
     .info-label {
-      color: $lightest;
+      color: white;
       margin-bottom: 0;
       font-size: 15px;
 

@@ -10,8 +10,8 @@ class User extends Model implements Authenticatable
 {
     use AuthenticatableTrait;
 
-    protected $table = 'users';
     public $timestamps = true;
+    protected $table = 'users';
     protected $fillable = ['name', 'email', 'profile_img', 'username', 'username_last_changed', 'settings_id', 'password'];
 
     protected $hidden = [
@@ -22,6 +22,11 @@ class User extends Model implements Authenticatable
         'Beginner' => 'Beginner',
         'Intermediate' => 'Intermediate',
         'Expert' => 'Expert'
+    ];
+
+    public static $reportReasons = [
+        'Pumping a Stock' => 'Pumping a Stock',
+        'Abusive Behavior' => 'Abusive Behavior',
     ];
 
     // Request validation rules

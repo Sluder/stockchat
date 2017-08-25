@@ -39,11 +39,12 @@
                                             <span class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-expanded="true"></span>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a href=""><i class="fa fa-ban" aria-hidden="true"></i> Report</a>
+                                                    <a data-toggle="modal" data-target="#report-user"><i class="fa fa-ban" aria-hidden="true"></i> Report</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
+                                    @include('pages.account.components.report-user-modal', ['user' => $user])
                                 @endif
                             </div>
                             <div class="row account-block">
@@ -167,21 +168,23 @@
                             <p class="profile-header">Following</p>
                             <div class="row" id="following-list">
                                 <div id="following-template" class="col-md-4 following-template" style="display: none;">
-                                    <div class="col-md-3">
-                                        <img class="profile-img" src="">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="row">
-                                            <p class="username"></p>
+                                    <a href="" class="profile-link">
+                                        <div class="col-md-3">
+                                            <img class="profile-img" src="">
                                         </div>
-                                        <div class="row">
-                                            <p class="follower_count"></p>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <p class="username"></p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="follower_count"></p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             <div id="empty">
-                                <p class="following-empty">You have not followed any users.</p>
+                                <p class="following-empty">{{ $owner ? "You have not followed any users." : "This user is not following anyone." }}</p>
                             </div>
                             <div class="load-more" onclick="loadMore()" id="load-more" style="display: none;">Load more</div>
                         </div>
@@ -223,7 +226,7 @@
         {
             $.ajax({
                 type : 'GET',
-                url: "/following/" + pageNumber,
+                url: "/following/" + pageNumber + "/" + {{ $user->id }},
                 success: function(response) {
                     pageNumber += 1;
                     if (response['data'].length === 0){
@@ -233,8 +236,10 @@
                         if (response['last_page'] !== 0) {
                             document.getElementById('empty').style.display = 'none';
 
+                            // Appends new list item for who user is following
                             for (var i = 0; i < response['data'].length; i++) {
                                 clone = document.getElementById('following-template').cloneNode(true);
+                                clone.querySelector('.profile-link').href = "/profile/" + response['data'][i]['username'];
                                 clone.querySelector('.profile-img').src = response['data'][i]['profile_img'];
                                 clone.querySelector('.username').innerHTML = response['data'][i]['username'];
                                 clone.querySelector('.follower_count').innerHTML = response['data'][i]['follower_count'] + " followers";

@@ -1,5 +1,5 @@
 
-{{-- User wants to follow another user --}}
+{{-- User wants to un-follow another user --}}
 <div class="modal fade unfollow-account-modal" id="unfollow-account" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
