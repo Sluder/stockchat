@@ -33,7 +33,7 @@ class AccountController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'username' => $username === NULL ? Auth::user()->username : $username,
-            'username_last_changed' =>  $username === NULL ? Auth::user()->username_last_changed : date("Y-m-d H:i:s"),
+            'username_last_changed' => $username === NULL ? Auth::user()->username_last_changed : date("Y-m-d H:i:s"),
         ]);
 
         Settings::find(Auth::user()->settings_id)->update([

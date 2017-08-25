@@ -26,8 +26,8 @@ Route::post('/report', 'ReportController@report')->name('report');
 
 
 // ---------- Groups
-Route::get("/room", "RoomController@roomShow")->name("room.view");
+Route::get("/room", "PageController@roomAdd")->name("room.view");
 Route::get("/leave/{room_id}", "RoomController@leave")->name("room.leave");
-Route::post("/create", "RoomController@create")->name("room.create");
+Route::post("/room/create", "RoomController@create")->name("room.create");
 Route::match(['GET', 'POST'], "/join/{key?}", "RoomController@join")->name("room.join");
 Route::get("/{key}", "RoomController@room")->name("room"); // Last

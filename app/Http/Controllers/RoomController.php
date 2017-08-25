@@ -4,17 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use Illuminate\Support\Facades\Auth;
-use Validator;
 use Illuminate\Http\Request;
+use Validator;
 
 class RoomController extends Controller
 {
-    // Join or create a room
-    public function roomShow()
-    {
-        return view("pages.rooms.room-add");
-    }
-
     // Individual room view (Auto join user if not already)
     public function room($key)
     {
@@ -74,9 +68,9 @@ class RoomController extends Controller
         }
 
         // Generate new room key
-        $key = substr(uniqid(), 6); //todo: first character to be a number
+        $key =  rand(0, 9) . substr(uniqid(), 7);
         while (Room::where('key', $key)->first() !== null) {
-            $key = substr(uniqid(), 6);
+            $key = substr(uniqid(), 7);
         }
 
         $room = Room::create([

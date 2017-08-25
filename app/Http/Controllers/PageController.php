@@ -43,4 +43,10 @@ class PageController extends Controller
         return view('pages.account.login');
     }
 
+    // Join or create a room
+    public function roomAdd()
+    {
+        return view("pages.rooms.room-add");
+    }
+
 }
